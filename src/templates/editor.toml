@@ -8,16 +8,13 @@
 "editorIndentGuide.background1" = "${palette.base_300}"
 "editorLineNumber.activeForeground" = "${palette.primary}"
 "editorLineNumber.foreground" = "${palette.base_300}"
-"editorWhitespace.foreground" = "#4a4850"
+"editorWhitespace.foreground" = "${palette.neutral}60"
 "editorWidget.background" = "${palette.base_100}"
 "focusBorder" = "${palette.primary}"
 "inputOption.activeBorder" = "${palette.secondary}"
-"minimap.selectionHighlight" = "#ffffff20"
-"peekView.border" = "${palette.secondary}"
-"peekViewTitle.background" = "#090B0F"
+"minimap.selectionHighlight" = "${palette.base_content}20"
 "pickerGroup.foreground" = "${palette.comment}"
-
-"selection.background" = "#ffffff20"
+"selection.background" = "${palette.base_content}20"
 "settings.focusedRowBackground" = "#262438"
 "widget.shadow" = "#00000080"
 
@@ -27,7 +24,7 @@ border = "${palette.base_300}"
 foreground = "${palette.base_content}"
 
 [editor.quickInputList]
-focusBackground = "${palette.primary}"
+focusBackground = "${palette.base_100}"
 
 [editor.editorHoverWidget]
 background = "${palette.base_200}"
@@ -121,6 +118,12 @@ border = "${palette.primary}"
 activeBorder = "${palette.primary}"
 activeForeground = "${palette.base_content}"
 inactiveForeground = "${palette.comment}"
+
+[editor.peekView]
+border = "${palette.base_300}"
+
+[editor.peekViewTitle]
+background = "${palette.base_100}"
 
 [editor.peekViewEditor]
 background = "${palette.base_300}"
