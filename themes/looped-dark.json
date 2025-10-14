@@ -145,7 +145,17 @@
     "titleBar.activeForeground": "#FAF9F6",
     "titleBar.inactiveBackground": "#0A0B10",
     "titleBar.inactiveForeground": "#FAF9F6",
-    "tree.indentGuidesStroke": "#8B8DFF50"
+    "tree.indentGuidesStroke": "#8B8DFF50",
+    "notifications.background": "#14161B",
+    "notifications.foreground": "#FAF9F6",
+    "notifications.border": "#313338",
+    "notificationCenter.border": "#313338",
+    "notificationCenterHeader.background": "#14161B",
+    "notificationCenterHeader.foreground": "#FAF9F6",
+    "notificationToast.border": "#313338",
+    "notificationsErrorIcon.foreground": "#D02E1E",
+    "notificationsWarningIcon.foreground": "#EE9A00",
+    "notificationsInfoIcon.foreground": "#8B8DFF"
   },
   "tokenColors": [
     {

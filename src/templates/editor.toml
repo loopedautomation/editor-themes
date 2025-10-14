@@ -204,3 +204,27 @@ inactiveForeground = "${palette.base_content}"
 
 [editor.tree]
 indentGuidesStroke = "${palette.secondary}50"
+
+[editor.notifications]
+background = "${palette.base_200}"
+foreground = "${palette.base_content}"
+border = "${palette.base_300}"
+
+[editor.notificationCenter]
+border = "${palette.base_300}"
+
+[editor.notificationCenterHeader]
+background = "${palette.base_200}"
+foreground = "${palette.base_content}"
+
+[editor.notificationToast]
+border = "${palette.base_300}"
+
+[editor.notificationsErrorIcon]
+foreground = "${palette.error}"
+
+[editor.notificationsWarningIcon]
+foreground = "${palette.warning}"
+
+[editor.notificationsInfoIcon]
+foreground = "${palette.info}"
