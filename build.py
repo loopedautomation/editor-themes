@@ -82,67 +82,100 @@ def build_theme(theme_path: Path, output_dir: Path):
     if not metadata_type:
         raise KeyError("The 'metadata.type' key is missing in the theme data. Please ensure it is defined in the theme file.")
 
-    # Process syntax tables to build token_colors
+    # Process syntax tables to build token_colors with relative scope convention
     token_colors = []
-    
+    emitted = set()
+
+    def resolve_color(val):
+        # If already a hex color, return; else attempt palette lookup
+        if isinstance(val, str) and re.match(r"^#([0-9a-fA-F]{3,8})$", val):
+            return val
+        if isinstance(val, str) and val in resolved.get("palette", {}):
+            return resolved["palette"][val]
+        return val
+
+    def normalize_scopes(current_prefix, scopes):
+        normalized = []
+        for raw in scopes:
+            if not raw:
+                continue
+            # leading dot => relative
+            if raw.startswith('.'):
+                frag = raw[1:]
+                normalized.append(f"{current_prefix}.{frag}")
+                continue
+            # absolute if equals prefix OR already starts with prefix + '.'
+            if raw == current_prefix or raw.startswith(current_prefix + '.'):
+                normalized.append(raw)
+                continue
+            # If raw contains '.' but does NOT start with prefix, treat as relative fragment style (e.g. block.js)
+            if '.' in raw and not raw.startswith(current_prefix + '.'):
+                normalized.append(f"{current_prefix}.{raw}")
+                continue
+            # If raw has no dot and differs from prefix -> relative simple fragment
+            if '.' not in raw and raw != current_prefix:
+                normalized.append(f"{current_prefix}.{raw}")
+                continue
+            # fallback
+            normalized.append(raw)
+        # de-dup preserve order
+        seen = set()
+        deduped = []
+        for s in normalized:
+            if s not in seen:
+                seen.add(s)
+                deduped.append(s)
+        return deduped
+
     def process_syntax_table(table_name, table_data, prefix=""):
-        """Recursively process syntax tables and append table name to scope."""
         current_prefix = f"{prefix}.{table_name}" if prefix else table_name
-        
-        # Check if this table has color or style (it's a syntax definition)
-        has_syntax_properties = "color" in table_data or "style" in table_data
-        
+        has_syntax_properties = any(k in table_data for k in ["color", "style", "scope", "name"])
         if has_syntax_properties:
-            # If scope is defined, use it; otherwise use the table name as the scope
             if "scope" in table_data:
                 scopes = table_data["scope"]
                 if isinstance(scopes, str):
                     scopes = [scopes]
-                # Append the table prefix to each scope
-                updated_scopes = [f"{current_prefix}.{scope}" if scope else current_prefix for scope in scopes]
+                updated_scopes = normalize_scopes(current_prefix, scopes)
             else:
-                # No scope defined, use the current_prefix as the scope
                 updated_scopes = [current_prefix]
-            
-            # Build token_color with proper key order: name, scope, settings
             token_color = {}
-            
-            # Add name if present (first)
             if "name" in table_data:
                 token_color["name"] = table_data["name"]
-            
-            # Add scope (second)
             token_color["scope"] = updated_scopes
-            
-            # Add settings (third)
             settings = {}
-            if "color" in table_data and table_data["color"]:
-                settings["foreground"] = table_data["color"]
-            if "style" in table_data and table_data["style"]:
-                settings["fontStyle"] = table_data["style"]
-            
+            col = table_data.get("color")
+            if col:
+                settings["foreground"] = resolve_color(col)
+            style_val = table_data.get("style")
+            if style_val:
+                settings["fontStyle"] = style_val
             token_color["settings"] = settings
-            
-            token_colors.append(token_color)
-        
-        # Recursively process nested tables
+            sig = (token_color.get("name"), tuple(token_color["scope"]), tuple(sorted(token_color["settings"].items())))
+            if sig not in emitted:
+                emitted.add(sig)
+                token_colors.append(token_color)
         for key, value in table_data.items():
             if isinstance(value, dict) and key not in ["scope", "name", "color", "style"]:
                 process_syntax_table(key, value, current_prefix)
-    
-    # Process all top-level items looking for syntax definitions
+
     for key, value in resolved.items():
         if isinstance(value, dict) and key not in ["editor", "metadata", "palette", "import", "overrides"]:
             process_syntax_table(key, value)
 
-    # Sort tokenColors by name, then scope, then settings
     def sort_key(token):
         name = token.get("name", "")
         scope = ",".join(sorted(token.get("scope", [])))
         settings = json.dumps(token.get("settings", {}), sort_keys=True)
         return (name, scope, settings)
-    
     token_colors.sort(key=sort_key)
+
+    # Flatten editor colors properly from nested editor dict
+    editor_colors = {}
+    if "editor" in resolved:
+        flat_editor = flatten_dict(resolved["editor"], parent_key="editor")
+        for k, v in flat_editor.items():
+            if k.startswith("editor."):
+                editor_colors[k.replace("editor.", "", 1)] = v
 
     # Use the extracted metadata values
     vscode_theme = {
@@ -150,7 +183,7 @@ def build_theme(theme_path: Path, output_dir: Path):
         "name": metadata_name,
         "type": metadata_type,
         "semanticHighlighting": resolved.get("metadata", {}).get("semanticHighlighting", True),
-        "colors": {key.replace("editor.", "", 1): value for key, value in resolved.items() if key.startswith("editor.")},
+        "colors": editor_colors,
         "tokenColors": token_colors,
     }
 
