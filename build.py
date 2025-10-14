@@ -32,6 +32,17 @@ def resolve_vars(obj, context):
         return re.sub(r"\$\{([a-zA-Z0-9_.]+)\}", repl, obj)
     return obj
 
+def flatten_dict(d, parent_key='', sep='.'):
+    """Flatten a nested dictionary into a single dictionary with dotted keys."""
+    items = []
+    for k, v in d.items():
+        new_key = f"{parent_key}{sep}{k}" if parent_key else k
+        if isinstance(v, dict):
+            items.extend(flatten_dict(v, new_key, sep=sep).items())
+        else:
+            items.append((new_key, v))
+    return dict(items)
+
 def build_theme(theme_path: Path, output_dir: Path):
     theme = load_toml(theme_path)
 
@@ -43,6 +54,15 @@ def build_theme(theme_path: Path, output_dir: Path):
     # Merge theme-level definitions
     theme_data = deep_merge(context, theme)
     resolved = resolve_vars(theme_data, theme_data)
+
+    # Flatten all top-level sections
+    for section in resolved:
+        if isinstance(resolved[section], dict):
+            resolved[section] = flatten_dict(resolved[section])
+
+    # Ensure syntax section is a list before processing
+    if "syntax" in resolved and isinstance(resolved["syntax"], dict):
+        resolved["syntax"] = list(flatten_dict(resolved["syntax"].items()))
 
     # Assemble VSCode JSON format
     vscode_theme = {

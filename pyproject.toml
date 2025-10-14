@@ -1,0 +1,9 @@
+[project]
+name = "editor-themes"
+version = "0.1.0"
+description = "Looped Automation Editor Themes"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "watchdog>=6.0.0",
+]
