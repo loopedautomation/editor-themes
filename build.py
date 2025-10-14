@@ -50,10 +50,10 @@ def flatten_dict(d, parent_key="", sep="."):
 
 
 def apply_overrides(base, overrides):
-    """Apply overrides to the base dictionary."""
-    for key, value in overrides.items():
-        base[key] = value  # Directly update the flattened key
-    return base
+    """Apply overrides to the base dictionary while retaining existing keys."""
+    if not isinstance(overrides, dict):
+        return base
+    return deep_merge(base, overrides)
 
 
 def build_theme(theme_path: Path, output_dir: Path):
@@ -125,12 +125,18 @@ def build_theme(theme_path: Path, output_dir: Path):
         current_prefix = f"{prefix}.{table_name}" if prefix else table_name
         is_group = bool(table_data.get("group"))
         # Only treat 'name' as a syntax property if it's a string (avoid collision with nested table named 'name')
+        # Accept both 'scope' and 'scopes' (authoring convenience); normalize later
         name_prop = table_data.get("name")
         has_name_attr = isinstance(name_prop, str)
-        has_syntax_properties = (any(k in table_data for k in ["color", "style", "scope"]) or has_name_attr) and not is_group
+        has_syntax_properties = (any(k in table_data for k in ["color", "style", "scope", "scopes"]) or has_name_attr) and not is_group
         if has_syntax_properties:
+            scope_key = None
             if "scope" in table_data:
-                scopes = table_data["scope"]
+                scope_key = "scope"
+            elif "scopes" in table_data:  # alias
+                scope_key = "scopes"
+            if scope_key:
+                scopes = table_data[scope_key]
                 if isinstance(scopes, str):
                     scopes = [scopes]
                 updated_scopes = normalize_scopes(current_prefix, scopes)
@@ -185,7 +191,7 @@ def build_theme(theme_path: Path, output_dir: Path):
                 token_colors.append(token_color)
         for key, value in table_data.items():
             # Recurse into any dict child that is not one of the primitive style attributes
-            if isinstance(value, dict) and key not in ["scope", "color", "style", "group"]:
+            if isinstance(value, dict) and key not in ["scope", "scopes", "color", "style", "group"]:
                 process_syntax_table(key, value, current_prefix)
 
     for key, value in resolved.items():

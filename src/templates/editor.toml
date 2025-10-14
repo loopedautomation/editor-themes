@@ -1,82 +1,111 @@
 [editor]
-"debugToolBar.background" = "#3d2c5a"
-"editorCursor.foreground" = "${palette.foreground}"
-"editorGroup.border" = "${palette.background}"
-"editorGroup.dropBackground" = "#ffffff10"
-"editorGroupHeader.tabsBackground" = "${palette.background}"
-"editorHoverWidget.background" = "${palette.background}"
-"editorHoverWidget.border" = "${palette.secondary}"
-"editorIndentGuide.activeBackground1" = "#7c5dfa"
-"editorIndentGuide.background1" = "#4a4850"
+"debugToolBar.background" = "${palette.base_100}"
+"editorCursor.foreground" = "${palette.base_content}"
+"editorGroup.border" = "${palette.base_100}"
+"editorGroup.dropBackground" = "${palette.base_300}40"
+"editorGroupHeader.tabsBackground" = "${palette.base_100}"
+"editorIndentGuide.activeBackground1" = "${palette.primary}"
+"editorIndentGuide.background1" = "${palette.base_300}"
 "editorLineNumber.activeForeground" = "${palette.primary}"
-"editorLineNumber.foreground" = "#4a4850"
-"editorSuggestWidget.background" = "#262438"
-"editorSuggestWidget.border" = "${palette.secondary}"
+"editorLineNumber.foreground" = "${palette.base_300}"
 "editorWhitespace.foreground" = "#4a4850"
-"editorWidget.background" = "${palette.background}"
+"editorWidget.background" = "${palette.base_100}"
 "focusBorder" = "${palette.primary}"
 "inputOption.activeBorder" = "${palette.secondary}"
 "minimap.selectionHighlight" = "#ffffff20"
-"peekView.border" = "#7c5dfa"
+"peekView.border" = "${palette.secondary}"
 "peekViewTitle.background" = "#090B0F"
 "pickerGroup.foreground" = "${palette.comment}"
-"quickInput.background" = "#262438"
-"quickInput.foreground" = "${palette.foreground}"
-"quickInputList.focusBackground" = "${palette.background}"
+
 "selection.background" = "#ffffff20"
 "settings.focusedRowBackground" = "#262438"
 "widget.shadow" = "#00000080"
 
+[editor.quickInput]
+background = "${palette.base_200}"
+border = "${palette.base_300}"
+foreground = "${palette.base_content}"
+
+[editor.quickInputList]
+focusBackground = "${palette.primary}"
+
+[editor.editorHoverWidget]
+background = "${palette.base_200}"
+border = "${palette.base_300}"
+
+[editor.editorSuggestWidget]
+background = "${palette.base_100}"
+border = "${palette.base_300}"
+
+[editor.gitDecoration]
+addedResourceForeground = "${palette.success}"
+modifiedResourceForeground = "${palette.info}"
+deletedResourceForeground = "${palette.error}"
+renamedResourceForeground = "${palette.info}"
+stageModifiedResourceForeground = "${palette.warning}"
+stageDeletedResourceForeground = "${palette.error}"
+untrackedResourceForeground = "${palette.success}"
+ignoredResourceForeground = "${palette.neutral}35"
+conflictingResourceForeground = "${palette.warning}"
+submoduleResourceForeground = "${palette.secondary}"
+
 [editor.activityBar]
 activeBorder = "${palette.primary}"
-background = "${palette.background}"
-foreground = "${palette.foreground}"
+background = "${palette.base_100}"
+foreground = "${palette.base_content}"
 
 [editor.activityBarBadge]
-background = "${palette.accent}"
+background = "${palette.primary}"
+
+[editor.button]
+background = "${palette.primary}"
+foreground = "${palette.primary_content}"
+hoverBackground = "${palette.primary_hover}"
 
 [editor.diffEditor]
-insertedTextBackground = "${palette.success}70"
+insertedTextBackground = "${palette.success}50"
 removedTextBackground = "${palette.error}50"
 
 [editor.dropdown]
-background = "${palette.background}"
-listBackground = "${palette.background}"
+background = "${palette.base_100}"
+listBackground = "${palette.base_100}"
 
 [editor.editor]
-background = "${palette.background}"
-foreground = "${palette.foreground}"
-lineHighlightBackground = "#ffffff08"
-selectionBackground = "#ffffff20"
+background = "${palette.base_100}"
+foreground = "${palette.base_content}"
+lineHighlightBackground = "${palette.base_200}"
+selectionBackground = "${palette.secondary}30"
 selectionHighlightBackground = "${palette.primary}30"
 
 [editor.input]
-background = "#262438"
-foreground = "${palette.foreground}"
+background = "${palette.base_200}"
+foreground = "${palette.base_content}"
+border = "${palette.base_100}"
+placeholderForeground = "${palette.neutral}50"
 
 [editor.inputValidation]
-errorBackground = "#8b1538"
+errorBackground = "${palette.error}"
 errorBorder = "${palette.secondary}"
-infoBackground = "#5d4d7a"
+infoBackground = "${palette.info}"
 infoBorder = "${palette.secondary}"
-warningBackground = "#b87400"
+warningBackground = "${palette.warning}"
 warningBorder = "${palette.secondary}"
 
 [editor.list]
-activeSelectionBackground = "#262438"
-dropBackground = "#ffffff10"
+activeSelectionBackground = "${palette.base_200}"
+dropBackground = "${palette.base_300}40"
+hoverBackground = "${palette.base_200}"
 errorForeground = "${palette.error}"
-highlightForeground = "${palette.foreground}"
-hoverBackground = "#262438"
-inactiveSelectionBackground = "${palette.background}"
+highlightForeground = "${palette.base_content}"
+inactiveSelectionBackground = "${palette.base_100}"
 warningForeground = "${palette.warning}"
 
 [editor.menu]
-background = "${palette.background}"
-foreground = "${palette.foreground}"
+background = "${palette.base_100}"
+foreground = "${palette.base_content}"
 
 [editor.notebook]
-cellBorderColor = "${palette.background}"
+cellBorderColor = "${palette.base_100}"
 cellEditorBackground = "#262438"
 cellHoverBackground = "#262438"
 cellInsertionIndicator = "#ffffff"
@@ -85,66 +114,85 @@ focusedCellBorder = "${palette.primary}"
 focusedEditorBorder = "${palette.primary}"
 
 [editor.panel]
-background = "${palette.background}"
+background = "${palette.base_100}"
 border = "${palette.primary}"
 
 [editor.panelTitle]
 activeBorder = "${palette.primary}"
-activeForeground = "${palette.foreground}"
+activeForeground = "${palette.base_content}"
 inactiveForeground = "${palette.comment}"
 
 [editor.peekViewEditor]
-background = "#262438"
+background = "${palette.base_300}"
 matchHighlightBackground = "#79767d"
 
 [editor.peekViewResult]
-background = "#090B0F"
+background = "${palette.base_100}"
 matchHighlightBackground = "#79767d"
 selectionBackground = "#090B0F"
 
 [editor.sideBar]
-background = "${palette.background}"
-foreground = "${palette.secondary}"
+background = "${palette.base_100}"
+foreground = "${palette.base_content}90"
+
+[editor.sideBarSectionHeader]
+background = "${palette.base_100}"
+foreground = "${palette.base_content}"
+border = "${palette.base_100}"
+
+[editor.sideBarTitle]
+foreground = "${palette.base_content}"
+
+[editor.statusBar]
+background = "${palette.base_100}"
+foreground = "${palette.base_content}"
+border = "${palette.base_100}"
+noFolderBackground = "${palette.base_100}"
+debugBackground = "${palette.secondary}"
 
 [editor.statusBarItem]
 errorBackground = "${palette.error}"
-errorForeground = "${palette.foreground}"
+errorForeground = "${palette.base_content}"
 prominentBackground = "${palette.primary}"
-prominentForeground = "${palette.foreground}"
-prominentHoverBackground = "${palette.primary_hover}"
-remoteBackground = "${palette.primary}"
-remoteForeground = "${palette.foreground}"
+prominentForeground = "${palette.base_content}"
+prominentHoverBackground = "${palette.primary_hover}70"
+remoteBackground = "${palette.base_100}"
+remoteForeground = "${palette.base_content}"
 warningBackground = "${palette.warning}"
-warningForeground = "${palette.foreground}"
+warningForeground = "${palette.base_content}"
 
 [editor.tab]
 activeBorder = "${palette.primary}"
-activeForeground = "${palette.foreground}"
-border = "${palette.background}"
-inactiveBackground = "${palette.background}"
+activeForeground = "${palette.base_content}"
+border = "${palette.base_100}"
+inactiveBackground = "${palette.base_100}"
 inactiveForeground = "${palette.secondary}"
 lastPinnedBorder = "${palette.secondary}"
 
+# override this in the theme
 [editor.terminal]
-ansiBlack = "#4a4850"
-ansiBlue = "${palette.info}"
-ansiBrightBlack = "${palette.comment}"
-ansiBrightBlue = "#4d9eff"
-ansiBrightCyan = "#19d4ff"
-ansiBrightGreen = "#37946A"
-ansiBrightMagenta = "#c77dff"
-ansiBrightRed = "#ff4d94"
+ansiBlack = "#000000"
+ansiBlue = "#0000ff"
+ansiBrightBlack = "#fff"
+ansiBrightBlue = "#add8e6"
+ansiBrightCyan = "#e0ffff"
+ansiBrightGreen = "#90ee90"
+ansiBrightMagenta = "#ff77ff"
+ansiBrightRed = "#ff6347"
 ansiBrightWhite = "#ffffff"
-ansiBrightYellow = "${palette.warning}"
-ansiCyan = "#0891b2"
-ansiGreen = "#37946A"
-ansiMagenta = "${palette.accent}"
-ansiRed = "${palette.error}"
-ansiWhite = "${palette.foreground}"
-ansiYellow = "${palette.warning}"
+ansiBrightYellow = "#ffffe0"
+ansiCyan = "#00ffff"
+ansiGreen = "#008000"
+ansiMagenta = "#ff00ff"
+ansiRed = "#ff0000"
+ansiWhite = "#c0c0c0"
+ansiYellow = "#ffff00"
 
 [editor.titleBar]
-activeBackground = "${palette.background}"
-activeForeground = "${palette.foreground}"
-inactiveBackground = "#14161A"
-inactiveForeground = "${palette.comment}"
+activeBackground = "${palette.base_100}"
+activeForeground = "${palette.base_content}"
+inactiveBackground = "${palette.base_100}"
+inactiveForeground = "${palette.base_content}"
+
+[editor.tree]
+indentGuidesStroke = "${palette.secondary}50"

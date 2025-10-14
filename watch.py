@@ -15,9 +15,6 @@ class RebuildHandler(FileSystemEventHandler):
         if event.is_directory:
             return
         if event.src_path.endswith(EXTENSIONS):
-            print("💅 Sorting and formatting toml files...")
-            subprocess.run(["uv", "run", "toml-sort", "--in-place", "--spaces-indent-inline-array=2", event.src_path], check=False)
-        if event.src_path.endswith(EXTENSIONS):
             subprocess.run(["python", "build.py"], check=False)
 
 

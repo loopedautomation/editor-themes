@@ -1,8 +1,3 @@
-[builtin_constant]
-name = "Built-in constant"
-scope = ["constant.language", "keyword.operator.ternary.jsx", "meta.brace.round.jsx", "meta.brace.square.jsx", "punctuation.definition.block.jsx", "punctuation.definition.binding-pattern.object.jsx", "punctuation.definition.template-expression.begin.jsx", "punctuation.definition.template-expression.end.jsx", "keyword.operator.ternary.js", "meta.brace.round.js", "meta.brace.square.js", "punctuation.definition.block.js", "punctuation.definition.binding-pattern.object.js", "punctuation.definition.template-expression.begin.js", "punctuation.definition.template-expression.end.js", "keyword.operator.ternary.ts", "meta.brace.round.ts", "meta.brace.square.ts", "punctuation.definition.block.ts", "punctuation.definition.binding-pattern.object.ts", "punctuation.definition.template-expression.begin.ts", "punctuation.definition.template-expression.end.ts", "keyword.operator.ternary.tsx", "meta.brace.round.tsx", "meta.brace.square.tsx", "punctuation.definition.block.tsx", "punctuation.definition.template-expression.begin.tsx", "punctuation.definition.template-expression.end.tsx", "punctuation.section.embedded.begin.js", "punctuation.section.embedded.end.js", "punctuation.section.embedded.begin.jsx", "punctuation.section.embedded.end.jsx", "punctuation.section.embedded.begin.ts", "punctuation.section.embedded.end.ts", "punctuation.section.embedded.begin.tsx", "punctuation.section.embedded.end.tsx"]
-color = "error"
-
 [class]
 name = "Class name"
 color = "#ECEEF5"
@@ -16,9 +11,8 @@ scope = ["comment", "definition.comment"]
 color = "foreground"
 scope = [".character", ".other"]
 
-[diff]
-color = "#75715E"
-name = ".header"
+[constant.language]
+color = "error"
 
 [entity.name.filename.find-in-files]
 name = "Filename in Find in Files"
@@ -52,6 +46,15 @@ scope = ["meta.structure.dictionary.json", "string.quoted.double.json"]
 [keyword]
 scope = ["keyword", "support.type.property-name.json"]
 color = "primary_hover"
+
+[keyword.operator.ternary]
+scope = [
+  ".jsx",
+  ".js",
+  ".ts",
+  ".tsx"
+]
+color = "error"
 
 [library_constant]
 color = "primary_hover"
@@ -99,17 +102,10 @@ color = "primary"
 name = "Markdown List Punctuation"
 scope = ["punctuation.definition.list.begin.markdown"]
 
-[markup.list]
-scopes = [".numbered.markdown", ".unnumbered.markdown"]
-color = "#f8f8f2"
-
-[markup.quote.markdown]
-color = "#e5e7eb"
-style = "italic"
-
-[markup.underline.link]
-scope = [".markdown", ".image.markdown"]
-color = "foreground"
+[markup]
+name = "Markup Styling"
+scope = [".bold", ".italic"]
+color = "#faf5ff"
 
 [markup.changed]
 color = "#8b5cf6"
@@ -117,29 +113,52 @@ color = "#8b5cf6"
 [markup.deleted]
 color = "#F811A0"
 
-[markup.inserted]
-color = "#f4a14d"
-
 [markup.heading]
 color = "#ec4899"
-
-[markup.inline.raw]
-color = "#EC0095"
-
-[markup.quote]
-color = "#F811A0"
 
 [markup.heading.setext]
 color = "#ec4899"
 style = "bold"
 
-[markup]
-name = "Markup Styling"
-scope = [".bold", ".italic"]
-color = "#faf5ff"
+[markup.inline.raw]
+color = "#EC0095"
+
+[markup.inserted]
+color = "#f4a14d"
+
+[markup.list]
+scope = [".numbered.markdown", ".unnumbered.markdown"]
+color = "#f8f8f2"
+
+[markup.quote]
+color = "#F811A0"
+
+[markup.quote.markdown]
+color = "#e5e7eb"
+style = "italic"
+
+[markup.strikethrough]
+style = "strikethrough"
+
+[markup.underline.link]
+scope = [".markdown", ".image.markdown"]
+color = "foreground"
+
+[meta.brace]
+scope = [
+  ".round.jsx",
+  ".square.jsx",
+  ".round.js",
+  ".square.js",
+  ".round.ts",
+  ".square.ts",
+  ".round.tsx",
+  ".square.tsx"
+]
+color = "error"
 
 [meta.diff]
-scopes = ["meta.diff", ".header"]
+scope = ["meta.diff", "diff.header", ".header"]
 color = "#75715E"
 
 [number]
@@ -152,40 +171,77 @@ color = "comment"
 name = "Punctuation"
 scope = [".definition", ".separator", ".terminator", ".accessor.optional.js.jsx"]
 
-[punctuation.definition]
-color = "comment"
+[punctuation.definition.binding-pattern]
 name = "Punctuation Definition"
-scope = [".block.js", ".binding-pattern.object.js", ".template-expression.begin.js", ".template-expression.end.js"]
+scope = [
+  ".js",
+  ".jsx",
+  ".ts",
+  ".tsx",
+  ".binding-pattern.object.js",
+  ".binding-pattern.object.jsx",
+  ".binding-pattern.object.ts",
+  ".binding-pattern.object.tsx"
+]
+color = "comment"
+
+[punctuation.definition.block]
+name = "Punctuation Definition"
+scope = [
+  ".js",
+  ".jsx",
+  ".ts",
+  ".tsx"
+]
+color = "comment"
+
+[punctuation.definition.template-expression]
+scope = [
+  ".begin.jsx",
+  ".end.jsx",
+  ".begin.js",
+  ".end.js",
+  ".begin.ts",
+  ".end.ts",
+  ".begin.tsx",
+  ".end.tsx"
+]
+color = "error"
 
 [punctuation.section]
 color = "primary"
 name = "Punctuation Section"
 scope = [".embedded.begin.js", ".embedded.end.js", ".embedded.begin.jsx", ".embedded.end.jsx"]
 
+[punctuation.section.embedded]
+scope = [
+  "punctuation.section.embedded.begin.js",
+  "punctuation.section.embedded.end.js",
+  "punctuation.section.embedded.begin.jsx",
+  "punctuation.section.embedded.end.jsx",
+  "punctuation.section.embedded.begin.ts",
+  "punctuation.section.embedded.end.ts",
+  "punctuation.section.embedded.begin.tsx",
+  "punctuation.section.embedded.end.tsx"
+]
+color = "error"
+
 [reset]
-color = "foreground"
 name = "Reset JavaScript string interpolation expression"
 scope = "meta.template.expression"
+color = "foreground"
 
 [storage]
 color = "foreground"
 name = "Storage"
 scope = "storage"
 
-[storage_type]
+[storage.type]
 color = "primary_hover"
-name = "Storage type"
-scope = "storage.type"
 style = "italic"
-
-[strikethrough]
-scope = "markup.strikethrough"
-style = "strikethrough"
 
 [string]
 color = "string"
-name = "String"
-scope = "string"
 
 [support]
 name = "Library class/type"
@@ -217,4 +273,3 @@ color = "#cca700"
 
 [variable]
 color = "foreground"
-name = "Variable"
