@@ -2,3 +2,4 @@ node_modules
 *.vsix
 .venv/
 __pycache__/
+.env*
