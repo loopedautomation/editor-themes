@@ -1,7 +1,7 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Looped Dark",
-  "type": "dark",
+  "name": "Looped Light",
+  "type": "light",
   "semanticHighlighting": true,
   "colors": {
     "titleBar.activeBackground": "#090B0F",

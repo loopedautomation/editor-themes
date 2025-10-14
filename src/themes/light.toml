@@ -1,0 +1,22 @@
+[import]
+editor = "../templates/editor.toml"
+syntax = "../templates/syntax.toml"
+
+[metadata]
+name = "Looped Light"
+type = "light"
+semanticHighlighting = true
+
+[palette]
+background = "#090B0F"
+foreground = "#faf8ff"
+primary = "#7c5dfa"
+primary_hover = "#9575ff"
+secondary = "#a397a3"
+accent = "#a855f7"
+success = "#48cc2e"
+warning = "#ED9B00"
+error = "#D02E1F"
+info = "#3b82f6"
+comment = "#79767d"
+string = "#888BFF"

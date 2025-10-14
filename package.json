@@ -1,9 +1,9 @@
 {
-  "name": "looped-dark",
+  "name": "looped-themes",
   "publisher": "Looped Automation",
-  "displayName": "Looped Dark",
-  "description": "Code theme inspired by the Tailwind colors.",
-  "version": "0.0.1",
+  "displayName": "Looped Themes",
+  "description": "Looped Automation editor themes - Dark and Light variants",
+  "version": "0.1.0",
   "icon": "looped.png",
   "engines": {
     "vscode": "^1.72.0"
