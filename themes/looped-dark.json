@@ -13,21 +13,18 @@
     "editorIndentGuide.background1": "#313338",
     "editorLineNumber.activeForeground": "#685EF6",
     "editorLineNumber.foreground": "#313338",
-    "editorWhitespace.foreground": "#4a4850",
+    "editorWhitespace.foreground": "#EDEEF560",
     "editorWidget.background": "#0A0B10",
     "focusBorder": "#685EF6",
     "inputOption.activeBorder": "#8B8DFF",
-    "minimap.selectionHighlight": "#ffffff20",
-    "peekView.border": "#8B8DFF",
-    "peekViewTitle.background": "#090B0F",
+    "minimap.selectionHighlight": "#FAF9F620",
     "pickerGroup.foreground": "#616369",
-    "selection.background": "#ffffff20",
-    "settings.focusedRowBackground": "#262438",
+    "selection.background": "#FAF9F620",
+    "settings.focusedRowBackground": "#14161B",
     "widget.shadow": "#00000080",
     "quickInput.background": "#14161B",
-    "quickInput.border": "#313338",
     "quickInput.foreground": "#FAF9F6",
-    "quickInputList.focusBackground": "#685EF6",
+    "quickInputList.focusBackground": "#0A0B10",
     "editorHoverWidget.background": "#14161B",
     "editorHoverWidget.border": "#313338",
     "editorSuggestWidget.background": "#0A0B10",
@@ -77,23 +74,32 @@
     "list.warningForeground": "#EE9A00",
     "menu.background": "#0A0B10",
     "menu.foreground": "#FAF9F6",
-    "notebook.cellBorderColor": "#0A0B10",
-    "notebook.cellEditorBackground": "#262438",
-    "notebook.cellHoverBackground": "#262438",
-    "notebook.cellInsertionIndicator": "#ffffff",
-    "notebook.focusedCellBackground": "#262438",
-    "notebook.focusedCellBorder": "#685EF6",
-    "notebook.focusedEditorBorder": "#685EF6",
+    "notebook.cellBorderColor": "#313338",
+    "notebook.cellEditorBackground": "#14161B",
+    "notebook.cellHoverBackground": "#14161B",
+    "notebook.cellInsertionIndicator": "#685EF6",
+    "notebook.cellStatusBarItemHoverBackground": "#14161B",
+    "notebook.cellToolbarSeparator": "#313338",
+    "notebook.focusedCellBackground": "#313338",
+    "notebook.focusedCellBorder": "#0A0B10",
+    "notebook.focusedEditorBorder": "#FAF9F6",
+    "notebook.inactiveFocusedCellBorder": "#313338",
+    "notebook.outputContainerBackgroundColor": "#0A0B10",
+    "notebook.outputContainerBorderColor": "#313338",
+    "notebook.selectedCellBackground": "#14161B",
+    "notebook.selectedCellBorder": "#8B8DFF",
     "panel.background": "#0A0B10",
     "panel.border": "#685EF6",
     "panelTitle.activeBorder": "#685EF6",
     "panelTitle.activeForeground": "#FAF9F6",
     "panelTitle.inactiveForeground": "#616369",
+    "peekView.border": "#313338",
+    "peekViewTitle.background": "#0A0B10",
     "peekViewEditor.background": "#313338",
-    "peekViewEditor.matchHighlightBackground": "#79767d",
+    "peekViewEditor.matchHighlightBackground": "#EDEEF550",
     "peekViewResult.background": "#0A0B10",
-    "peekViewResult.matchHighlightBackground": "#79767d",
-    "peekViewResult.selectionBackground": "#090B0F",
+    "peekViewResult.matchHighlightBackground": "#EDEEF550",
+    "peekViewResult.selectionBackground": "#14161B",
     "sideBar.background": "#0A0B10",
     "sideBar.foreground": "#FAF9F690",
     "sideBarSectionHeader.background": "#0A0B10",
@@ -104,12 +110,11 @@
     "statusBar.foreground": "#FAF9F6",
     "statusBar.border": "#0A0B10",
     "statusBar.noFolderBackground": "#0A0B10",
-    "statusBar.debugBackground": "#8B8DFF",
     "statusBarItem.errorBackground": "#D02E1E",
     "statusBarItem.errorForeground": "#FAF9F6",
     "statusBarItem.prominentBackground": "#685EF6",
     "statusBarItem.prominentForeground": "#FAF9F6",
-    "statusBarItem.prominentHoverBackground": "#685ef6d570",
+    "statusBarItem.prominentHoverBackground": "#685ef6d5",
     "statusBarItem.remoteBackground": "#0A0B10",
     "statusBarItem.remoteForeground": "#FAF9F6",
     "statusBarItem.warningBackground": "#EE9A00",
@@ -158,7 +163,7 @@
         "constant.other"
       ],
       "settings": {
-        "foreground": "foreground"
+        "foreground": "#FAF9F6"
       }
     },
     {
@@ -296,7 +301,7 @@
         "markup.underline.link.image.markdown"
       ],
       "settings": {
-        "foreground": "foreground"
+        "foreground": "#FAF9F6"
       }
     },
     {
@@ -414,7 +419,7 @@
         "variable"
       ],
       "settings": {
-        "foreground": "foreground"
+        "foreground": "#FAF9F6"
       }
     },
     {
@@ -618,7 +623,7 @@
         "meta.template.expression"
       ],
       "settings": {
-        "foreground": "foreground"
+        "foreground": "#FAF9F6"
       }
     },
     {
@@ -627,7 +632,7 @@
         "storage"
       ],
       "settings": {
-        "foreground": "foreground"
+        "foreground": "#FAF9F6"
       }
     },
     {

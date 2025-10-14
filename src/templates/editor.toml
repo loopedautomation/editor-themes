@@ -15,12 +15,11 @@
 "minimap.selectionHighlight" = "${palette.base_content}20"
 "pickerGroup.foreground" = "${palette.comment}"
 "selection.background" = "${palette.base_content}20"
-"settings.focusedRowBackground" = "#262438"
+"settings.focusedRowBackground" = "${palette.base_200}"
 "widget.shadow" = "#00000080"
 
 [editor.quickInput]
 background = "${palette.base_200}"
-border = "${palette.base_300}"
 foreground = "${palette.base_content}"
 
 [editor.quickInputList]
@@ -102,13 +101,20 @@ background = "${palette.base_100}"
 foreground = "${palette.base_content}"
 
 [editor.notebook]
-cellBorderColor = "${palette.base_100}"
-cellEditorBackground = "#262438"
-cellHoverBackground = "#262438"
-cellInsertionIndicator = "#ffffff"
-focusedCellBackground = "#262438"
-focusedCellBorder = "${palette.primary}"
-focusedEditorBorder = "${palette.primary}"
+cellBorderColor = "${palette.base_300}"
+cellEditorBackground = "${palette.base_200}"
+cellHoverBackground = "${palette.base_200}"
+cellInsertionIndicator = "${palette.primary}"
+cellStatusBarItemHoverBackground = "${palette.base_200}"
+cellToolbarSeparator = "${palette.base_300}"
+focusedCellBackground = "${palette.base_300}"
+focusedCellBorder = "${palette.base_100}"
+focusedEditorBorder = "${palette.base_content}"
+inactiveFocusedCellBorder = "${palette.base_300}"
+outputContainerBackgroundColor = "${palette.base_100}"
+outputContainerBorderColor = "${palette.base_300}"
+selectedCellBackground = "${palette.base_200}"
+selectedCellBorder = "${palette.secondary}"
 
 [editor.panel]
 background = "${palette.base_100}"
@@ -127,12 +133,12 @@ background = "${palette.base_100}"
 
 [editor.peekViewEditor]
 background = "${palette.base_300}"
-matchHighlightBackground = "#79767d"
+matchHighlightBackground = "${palette.neutral}50"
 
 [editor.peekViewResult]
 background = "${palette.base_100}"
-matchHighlightBackground = "#79767d"
-selectionBackground = "#090B0F"
+matchHighlightBackground = "${palette.neutral}50"
+selectionBackground = "${palette.base_200}"
 
 [editor.sideBar]
 background = "${palette.base_100}"
@@ -151,14 +157,13 @@ background = "${palette.base_100}"
 foreground = "${palette.base_content}"
 border = "${palette.base_100}"
 noFolderBackground = "${palette.base_100}"
-debugBackground = "${palette.secondary}"
 
 [editor.statusBarItem]
 errorBackground = "${palette.error}"
 errorForeground = "${palette.base_content}"
 prominentBackground = "${palette.primary}"
 prominentForeground = "${palette.base_content}"
-prominentHoverBackground = "${palette.primary_hover}70"
+prominentHoverBackground = "${palette.primary_hover}"
 remoteBackground = "${palette.base_100}"
 remoteForeground = "${palette.base_content}"
 warningBackground = "${palette.warning}"
