@@ -123,7 +123,11 @@ def build_theme(theme_path: Path, output_dir: Path):
 
     def process_syntax_table(table_name, table_data, prefix=""):
         current_prefix = f"{prefix}.{table_name}" if prefix else table_name
-        has_syntax_properties = any(k in table_data for k in ["color", "style", "scope", "name"])
+        is_group = bool(table_data.get("group"))
+        # Only treat 'name' as a syntax property if it's a string (avoid collision with nested table named 'name')
+        name_prop = table_data.get("name")
+        has_name_attr = isinstance(name_prop, str)
+        has_syntax_properties = (any(k in table_data for k in ["color", "style", "scope"]) or has_name_attr) and not is_group
         if has_syntax_properties:
             if "scope" in table_data:
                 scopes = table_data["scope"]
@@ -132,9 +136,25 @@ def build_theme(theme_path: Path, output_dir: Path):
                 updated_scopes = normalize_scopes(current_prefix, scopes)
             else:
                 updated_scopes = [current_prefix]
+
+            # Split any comma-delimited scope strings that accidentally bundled multiple scopes
+            split_scopes = []
+            for s in updated_scopes:
+                if isinstance(s, str) and "," in s:
+                    parts = [p.strip() for p in s.split(",") if p.strip()]
+                    if len(parts) > 1:
+                        print(f"⚠️  Splitting comma-delimited scope entry into multiple scopes: {s} -> {parts}")
+                    split_scopes.extend(parts)
+                else:
+                    split_scopes.append(s)
+            # Final sanitation: ensure all scopes are strings
+            updated_scopes = [str(s) for s in split_scopes if s]
+
             token_color = {}
-            if "name" in table_data:
-                token_color["name"] = table_data["name"]
+            if has_name_attr:
+                token_color["name"] = name_prop
+            elif "name" in table_data and not isinstance(name_prop, str):
+                print(f"⚠️  Ignoring non-string 'name' field at {current_prefix}; treat as nested scope container.")
             token_color["scope"] = updated_scopes
             settings = {}
             col = table_data.get("color")
@@ -144,12 +164,28 @@ def build_theme(theme_path: Path, output_dir: Path):
             if style_val:
                 settings["fontStyle"] = style_val
             token_color["settings"] = settings
-            sig = (token_color.get("name"), tuple(token_color["scope"]), tuple(sorted(token_color["settings"].items())))
+            # Build a stable, hashable signature using JSON to avoid unhashable nested values
+            try:
+                sig = json.dumps({
+                    "name": token_color.get("name"),
+                    "scope": token_color.get("scope"),
+                    "settings": token_color.get("settings")
+                }, sort_keys=True)
+            except TypeError:
+                # Fallback: coerce any problematic objects to string
+                coerced = {
+                    "name": token_color.get("name"),
+                    "scope": [str(s) for s in token_color.get("scope", [])],
+                    "settings": {k: (v if isinstance(v, (str, int, float, bool)) else str(v)) for k, v in token_color.get("settings", {}).items()}
+                }
+                sig = json.dumps(coerced, sort_keys=True)
+                token_color = coerced
             if sig not in emitted:
                 emitted.add(sig)
                 token_colors.append(token_color)
         for key, value in table_data.items():
-            if isinstance(value, dict) and key not in ["scope", "name", "color", "style"]:
+            # Recurse into any dict child that is not one of the primitive style attributes
+            if isinstance(value, dict) and key not in ["scope", "color", "style", "group"]:
                 process_syntax_table(key, value, current_prefix)
 
     for key, value in resolved.items():
@@ -157,10 +193,23 @@ def build_theme(theme_path: Path, output_dir: Path):
             process_syntax_table(key, value)
 
     def sort_key(token):
-        name = token.get("name", "")
-        scope = ",".join(sorted(token.get("scope", [])))
-        settings = json.dumps(token.get("settings", {}), sort_keys=True)
-        return (name, scope, settings)
+        name = token.get("name") or ""
+        raw_scope = token.get("scope", [])
+        # Guarantee list of strings for deterministic ordering
+        if isinstance(raw_scope, (list, tuple)):
+            safe_scope = [str(s) for s in raw_scope]
+            try:
+                scope_join = ",".join(sorted(safe_scope))
+            except Exception:
+                # Fallback: no internal sort if comparison fails (should not now)
+                scope_join = ",".join(safe_scope)
+        else:
+            scope_join = str(raw_scope)
+        settings_obj = token.get("settings", {})
+        if not isinstance(settings_obj, dict):
+            settings_obj = {"_value": settings_obj}
+        settings_str = json.dumps(settings_obj, sort_keys=True)
+        return (name, scope_join, settings_str)
     token_colors.sort(key=sort_key)
 
     # Flatten editor colors properly from nested editor dict

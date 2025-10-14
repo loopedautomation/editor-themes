@@ -1,240 +1,220 @@
+[builtin_constant]
+name = "Built-in constant"
+scope = ["constant.language", "keyword.operator.ternary.jsx", "meta.brace.round.jsx", "meta.brace.square.jsx", "punctuation.definition.block.jsx", "punctuation.definition.binding-pattern.object.jsx", "punctuation.definition.template-expression.begin.jsx", "punctuation.definition.template-expression.end.jsx", "keyword.operator.ternary.js", "meta.brace.round.js", "meta.brace.square.js", "punctuation.definition.block.js", "punctuation.definition.binding-pattern.object.js", "punctuation.definition.template-expression.begin.js", "punctuation.definition.template-expression.end.js", "keyword.operator.ternary.ts", "meta.brace.round.ts", "meta.brace.square.ts", "punctuation.definition.block.ts", "punctuation.definition.binding-pattern.object.ts", "punctuation.definition.template-expression.begin.ts", "punctuation.definition.template-expression.end.ts", "keyword.operator.ternary.tsx", "meta.brace.round.tsx", "meta.brace.square.tsx", "punctuation.definition.block.tsx", "punctuation.definition.template-expression.begin.tsx", "punctuation.definition.template-expression.end.tsx", "punctuation.section.embedded.begin.js", "punctuation.section.embedded.end.js", "punctuation.section.embedded.begin.jsx", "punctuation.section.embedded.end.jsx", "punctuation.section.embedded.begin.ts", "punctuation.section.embedded.end.ts", "punctuation.section.embedded.begin.tsx", "punctuation.section.embedded.end.tsx"]
+color = "error"
+
+[class]
+name = "Class name"
+color = "#ECEEF5"
+scope = ["entity.name.type", "entity.name.class", "entity.name.namespace", "entity.name.scope-resolution"]
+
+[comment]
+color = "comment"
+scope = ["comment", "definition.comment"]
+
+[constant]
+color = "foreground"
+scope = [".character", ".other"]
+
+[diff]
+color = "#75715E"
+name = ".header"
+
+[entity.name.filename.find-in-files]
+name = "Filename in Find in Files"
+color = "#FCFD28"
+
+[entity.other.attribute-name]
+name = "Tag attribute"
+color = "warning"
+
+[function]
+color = "string"
+name = "Function name"
+scope = ["entity.name.function", "meta.function-call.python", "new.expr.js"]
+
+[inherited_class]
+color = "#e0cbff"
+name = "Inherited class"
+scope = "entity.other.inherited-class"
+style = "italic underline"
+
+[invalid]
+color = "#F44747"
+name = "Invalid"
+scope = "invalid"
+
+[json_string]
+name = "JSON String"
+color = "#CFCFC2"
+scope = ["meta.structure.dictionary.json", "string.quoted.double.json"]
+
+[keyword]
+scope = ["keyword", "support.type.property-name.json"]
+color = "primary_hover"
+
+[library_constant]
+color = "primary_hover"
+name = "Library constant"
+scope = "support.constant"
+
+[library_function]
+color = "primary_hover"
+name = "Library function"
+scope = "support.function"
+
+[library_variable]
+name = "Library variable"
+scope = "support.other.variable"
+
+[line_number]
+color = "#ec4899A0"
+scope = "constant.numeric.line-number.find-in-files - match"
+
+[markdown_bold]
+name = "Markdown Bold"
+scope = "markup.bold.markdown"
+style = "bold"
+
+[markdown_emphasis]
+name = "Markdown Emphasis"
+scope = "markup.italic.markdown"
+style = "italic"
+
+[markdown_link_title_description]
+color = "error"
+group = true
+name = "Markdown Link Title/Description"
+
+[markdown_link_title_description.string.other.link.description.markdown]
+color = "error"
+scope = "string.other.link.description.markdown"
+
+[markdown_link_title_description.string.other.link.title.markdown]
+color = "error"
+scope = "string.other.link.title.markdown"
+
+[markdown_list_punctuation]
+color = "primary"
+name = "Markdown List Punctuation"
+scope = ["punctuation.definition.list.begin.markdown"]
+
+[markup.list]
+scopes = [".numbered.markdown", ".unnumbered.markdown"]
+color = "#f8f8f2"
+
+[markup.quote.markdown]
+color = "#e5e7eb"
+style = "italic"
+
+[markup.underline.link]
+scope = [".markdown", ".image.markdown"]
+color = "foreground"
+
+[markup.changed]
+color = "#8b5cf6"
+
+[markup.deleted]
+color = "#F811A0"
+
+[markup.inserted]
+color = "#f4a14d"
+
+[markup.heading]
+color = "#ec4899"
+
+[markup.inline.raw]
+color = "#EC0095"
+
+[markup.quote]
+color = "#F811A0"
+
+[markup.heading.setext]
+color = "#ec4899"
+style = "bold"
+
+[markup]
+name = "Markup Styling"
+scope = [".bold", ".italic"]
+color = "#faf5ff"
+
+[meta.diff]
+scopes = ["meta.diff", ".header"]
+color = "#75715E"
+
+[number]
+color = "error"
+name = "Number"
+scope = "constant.numeric"
+
+[punctuation]
+color = "comment"
+name = "Punctuation"
+scope = [".definition", ".separator", ".terminator", ".accessor.optional.js.jsx"]
+
+[punctuation.definition]
+color = "comment"
+name = "Punctuation Definition"
+scope = [".block.js", ".binding-pattern.object.js", ".template-expression.begin.js", ".template-expression.end.js"]
+
+[punctuation.section]
+color = "primary"
+name = "Punctuation Section"
+scope = [".embedded.begin.js", ".embedded.end.js", ".embedded.begin.jsx", ".embedded.end.jsx"]
+
+[reset]
+color = "foreground"
+name = "Reset JavaScript string interpolation expression"
+scope = "meta.template.expression"
+
+[storage]
+color = "foreground"
+name = "Storage"
+scope = "storage"
+
+[storage_type]
+color = "primary_hover"
+name = "Storage type"
+scope = "storage.type"
+style = "italic"
+
+[strikethrough]
+scope = "markup.strikethrough"
+style = "strikethrough"
+
+[string]
+color = "string"
+name = "String"
+scope = "string"
+
+[support]
+name = "Library class/type"
+scope = [".type", ".class"]
+color = "string"
+style = "italic"
+
+[tag_name]
+color = "#8B8DFF"
+name = "Tag name"
+scope = ["entity.name.tag", "support.class.component.jsx", "support.class.component.js", "support.class.component.ts", "support.class.component.tsx"]
+
+[template]
+color = "primary"
+name = "Template Definition"
+scope = ["punctuation.definition.template-expression", "punctuation.section.embedded"]
+
+[token.debug-token]
+color = "#dcdcaa"
+
+[token.error-token]
+color = "#f44747"
+
 [token.info-token]
 color = "#6796e6"
 
 [token.warn-token]
 color = "#cca700"
 
-[token.error-token]
-color = "#f44747"
-
-[token.debug-token]
-color = "#dcdcaa"
-
-[punctuation.section]
-name = "Punctuation Section"
-scope = [".embedded.begin.js", ".embedded.end.js", ".embedded.begin.jsx", ".embedded.end.jsx"]
-color = "primary"
-
-[punctuation.definition]
-name = "Punctuation Definition"
-scope = [".block.js", ".binding-pattern.object.js", ".template-expression.begin.js", ".template-expression.end.js"]
-color = "comment"
-
-[punctuation]
-name = "Punctuation"
-scope = [".definition", ".separator", ".terminator", ".accessor.optional.js.jsx"]
-color = "comment"
-
-[keyword]
-scope = ["keyword", "support.type.property-name.json"]
-color = "primary_hover"
-
-[string]
-name = "String"
-scope = "string"
-color = "string"
-
-[comment]
-name = "Comment"
-scope = ["comment", "definition.comment"]
-color = "comment"
-
-[number]
-name = "Number"
-scope = "constant.numeric"
-color = "error"
-
-[function]
-name = "Function name"
-scope = ["entity.name.function", "meta.function-call.python", "new.expr.js"]
-color = "string"
-
-[class]
-name = "Class name"
-scope = ["entity.name.type", "entity.name.class", "entity.name.namespace", "entity.name.scope-resolution"]
-color = "#ECEEF5"
-
-[invalid]
-name = "Invalid"
-scope = "invalid"
-color = "#F44747"
-
-[template]
-name = "Template Definition"
-scope = ["punctuation.definition.template-expression", "punctuation.section.embedded"]
-color = "primary"
-
-[reset]
-name = "Reset JavaScript string interpolation expression"
-scope = "meta.template.expression"
-color = "foreground"
-
-[builtin_constant]
-name = "Built-in constant"
-scope = ["constant.language", "keyword.operator.ternary.jsx", "meta.brace.round.jsx", "meta.brace.square.jsx", "punctuation.definition.block.jsx", "punctuation.definition.binding-pattern.object.jsx", "punctuation.definition.template-expression.begin.jsx", "punctuation.definition.template-expression.end.jsx", "keyword.operator.ternary.js", "meta.brace.round.js", "meta.brace.square.js", "punctuation.definition.block.js", "punctuation.definition.binding-pattern.object.js", "punctuation.definition.template-expression.begin.js", "punctuation.definition.template-expression.end.js", "keyword.operator.ternary.ts", "meta.brace.round.ts", "meta.brace.square.ts", "punctuation.definition.block.ts", "punctuation.definition.binding-pattern.object.ts", "punctuation.definition.template-expression.begin.ts", "punctuation.definition.template-expression.end.ts", "keyword.operator.ternary.tsx", "meta.brace.round.tsx", "meta.brace.square.tsx", "punctuation.definition.block.tsx", "punctuation.definition.template-expression.begin.tsx", "punctuation.definition.template-expression.end.tsx", "punctuation.section.embedded.begin.js", "punctuation.section.embedded.end.js", "punctuation.section.embedded.begin.jsx", "punctuation.section.embedded.end.jsx", "punctuation.section.embedded.begin.ts", "punctuation.section.embedded.end.ts", "punctuation.section.embedded.begin.tsx", "punctuation.section.embedded.end.tsx"]
-color = "error"
-
-[user_defined_constant]
-name = "User-defined constant"
-scope = "constant.character, constant.other"
-color = "foreground"
-
 [variable]
+color = "foreground"
 name = "Variable"
-scope = "variable"
-color = "foreground"
-
-[storage]
-name = "Storage"
-scope = "storage"
-color = "foreground"
-
-[storage_type]
-name = "Storage type"
-scope = "storage.type"
-color = "primary_hover"
-style = "italic"
-
-[inherited_class]
-name = "Inherited class"
-scope = "entity.other.inherited-class"
-color = "#e0cbff"
-style = "italic underline"
-
-[tag_name]
-name = "Tag name"
-scope = ["entity.name.tag", "support.class.component.jsx", "support.class.component.js", "support.class.component.ts", "support.class.component.tsx"]
-color = "#8B8DFF"
-
-[tag_attribute]
-name = "Tag attribute"
-scope = "entity.other.attribute-name"
-color = "warning"
-
-[library_function]
-name = "Library function"
-scope = "support.function"
-color = "primary_hover"
-
-[library_constant]
-name = "Library constant"
-scope = "support.constant"
-color = "primary_hover"
-
-[library_class_type]
-name = "Library class/type"
-scope = "support.type, support.class"
-color = "string"
-style = "italic"
-
-[library_variable]
-name = "Library variable"
-scope = "support.other.variable"
-color = ""
-
-[json_string]
-name = "JSON String"
-scope = "meta.structure.dictionary.json string.quoted.double.json"
-color = "#CFCFC2"
-
-[diff_header]
-name = "diff.header"
-scope = "meta.diff, meta.diff.header"
-color = "#75715E"
-
-[diff_deleted]
-name = "diff.deleted"
-scope = "markup.deleted"
-color = "#F811A0"
-
-[diff_inserted]
-name = "diff.inserted"
-scope = "markup.inserted"
-color = "#f4a14d"
-
-[diff_changed]
-name = "diff.changed"
-scope = "markup.changed"
-color = "#8b5cf6"
-
-[line_number]
-scope = "constant.numeric.line-number.find-in-files - match"
-color = "#ec4899A0"
-
-[filename]
-scope = "entity.name.filename.find-in-files"
-color = "#FCFD28"
-
-[markup_quote]
-name = "Markup Quote"
-scope = "markup.quote"
-color = "#F811A0"
-
-[markup_lists]
-name = "Markup Lists"
-scope = "markup.list"
-color = "#d946ef"
-
-[markup_styling]
-name = "Markup Styling"
-scope = "markup.bold, markup.italic"
-color = "#faf5ff"
-
-[markup_inline]
-name = "Markup Inline"
-scope = "markup.inline.raw"
-color = "#EC0095"
-
-[markup_headings]
-name = "Markup Headings"
-scope = "markup.heading"
-color = "#ec4899"
-
-[markup_setext_header]
-name = "Markup Setext Header"
-scope = "markup.heading.setext"
-color = "#ec4899"
-style = "bold"
-
-[markdown_quote]
-name = "Markdown Quote"
-scope = "markup.quote.markdown"
-color = "#e5e7eb"
-style = "italic"
-
-[markdown_bold]
-name = "Markdown Bold"
-scope = "markup.bold.markdown"
-color = ""
-style = "bold"
-
-[markdown_link_title_description]
-name = "Markdown Link Title/Description"
-scope = "string.other.link.title.markdown,string.other.link.description.markdown"
-color = "error"
-
-[markdown_underline_link_image]
-name = "Markdown Underline Link/Image"
-scope = "markup.underline.link.markdown,markup.underline.link.image.markdown"
-color = "foreground"
-
-[markdown_emphasis]
-name = "Markdown Emphasis"
-scope = "markup.italic.markdown"
-color = ""
-style = "italic"
-
-[strikethrough]
-scope = "markup.strikethrough"
-color = ""
-style = "strikethrough"
-
-[markdown_punctuation_definition_link]
-name = "Markdown Punctuation Definition Link"
-scope = "markup.list.unnumbered.markdown, markup.list.numbered.markdown"
-color = "#f8f8f2"
-
-[markdown_list_punctuation]
-name = "Markdown List Punctuation"
-scope = ["punctuation.definition.list.begin.markdown"]
-color = "primary"
