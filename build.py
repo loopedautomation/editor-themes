@@ -50,6 +50,13 @@ def flatten_dict(d, parent_key="", sep="."):
     return dict(items)
 
 
+def apply_overrides(base, overrides):
+    """Apply overrides to the base dictionary."""
+    for key, value in overrides.items():
+        base[key] = value  # Directly update the flattened key
+    return base
+
+
 def build_theme(theme_path: Path, output_dir: Path):
     theme = load_toml(theme_path)
 
@@ -62,28 +69,34 @@ def build_theme(theme_path: Path, output_dir: Path):
     theme_data = deep_merge(context, theme)
     resolved = resolve_vars(theme_data, theme_data)
 
-    # Flatten all top-level sections
-    for section in resolved:
-        if isinstance(resolved[section], dict):
-            resolved[section] = flatten_dict(resolved[section])
+    print("Resolved before overrides:", resolved)  # Debugging
+
+    # Apply overrides from the theme file after flattening
+    if "overrides" in theme:
+        resolved = apply_overrides(resolved, theme["overrides"])
+
+    print("Resolved after overrides:", resolved)  # Debugging
 
     # Ensure syntax section is a list before processing
     if "syntax" in resolved and isinstance(resolved["syntax"], dict):
         resolved["syntax"] = list(flatten_dict(resolved["syntax"].items()))
 
+    # Flatten the resolved dictionary before generating JSON
+    resolved = flatten_dict(resolved)
+
     # Assemble VSCode JSON format
     vscode_theme = {
         "$schema": "vscode://schemas/color-theme",
-        "name": resolved["metadata"]["name"],
-        "type": resolved["metadata"]["type"],
-        "semanticHighlighting": resolved["metadata"].get("semanticHighlighting", True),
-        "colors": resolved.get("editor", {}),
+        "name": resolved["metadata.name"],
+        "type": resolved["metadata.type"],
+        "semanticHighlighting": resolved.get("metadata.semanticHighlighting", True),
+        "colors": {key.replace("editor.", "", 1): value for key, value in resolved.items() if key.startswith("editor.")},
         "tokenColors": resolved.get("syntax", []),
     }
 
     output_dir.mkdir(exist_ok=True)
     out_path = (
-        output_dir / f"{resolved['metadata']['name'].lower().replace(' ', '-')}.json"
+        output_dir / f"{resolved['metadata.name'].lower().replace(' ', '-')}.json"
     )
     with open(out_path, "w") as f:
         json.dump(vscode_theme, f, indent=2)

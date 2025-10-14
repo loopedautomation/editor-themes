@@ -4,19 +4,22 @@ syntax = "../templates/syntax.toml"
 
 [metadata]
 name = "Looped Dark"
-type = "dark"
 semanticHighlighting = true
+type = "dark"
+
+[overrides]
+"terminal.ansiBlack" = "#000"
 
 [palette]
+accent = "#a855f7"
 background = "#090B0F"
+comment = "#79767d"
+error = "#D02E1F"
 foreground = "#faf8ff"
+info = "#3b82f6"
 primary = "#7c5dfa"
 primary_hover = "#9575ff"
 secondary = "#a397a3"
-accent = "#a855f7"
+string = "#888BFF"
 success = "#48cc2e"
 warning = "#ED9B00"
-error = "#D02E1F"
-info = "#3b82f6"
-comment = "#79767d"
-string = "#888BFF"
