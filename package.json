@@ -26,6 +26,11 @@
         "label": "Looped Dark",
         "uiTheme": "vs-dark",
         "path": "./themes/looped-dark.json"
+      },
+      {
+        "label": "Looped Light",
+        "uiTheme": "vs",
+        "path": "./themes/looped-light.json"
       }
     ]
   }

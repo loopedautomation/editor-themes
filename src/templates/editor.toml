@@ -88,6 +88,7 @@ warningBorder = "${palette.secondary}"
 
 [editor.list]
 activeSelectionBackground = "${palette.base_200}"
+activeSelectionForeground = "${palette.base_content}"
 dropBackground = "${palette.base_300}40"
 hoverBackground = "${palette.base_200}"
 errorForeground = "${palette.error}"

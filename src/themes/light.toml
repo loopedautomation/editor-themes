@@ -1,0 +1,48 @@
+[import]
+editor = "../templates/editor.toml"
+syntax = "../templates/syntax.toml"
+
+[metadata]
+name = "Looped Light"
+semanticHighlighting = true
+type = "light"
+
+[palette]
+base_100 = "#FFFFFF"
+base_200 = "#EEEEEE"
+base_300 = "#DEDEDE"
+base_content = "#030306"
+primary = "#685EF6"
+primary_hover = "#685ef6d5"
+primary_content = "#FFFFFF"
+secondary = "#8B8DFF"
+accent = "#4A1ED9"
+neutral = "#15161B"
+info = "#8B8DFF"
+error = "#D02E1E"
+success = "#389469"
+warning = "#EE9A00"
+comment = "#a5a5a5"
+string = "#685EF6"
+number = "#5f97f0"
+boolean = "#7E5DE9"
+operator = "#685EF6"
+keyword = "#4A1ED9"
+variable = "#030306"
+constant = "#685EF6"
+function_name = "#030306"
+tag = "#cc2e3b"
+attribute = "#5f97f0"
+
+[overrides.editor.sideBar]
+background = "#EEEEEE"
+
+[overrides.editor.activityBar]
+background = "#DEDEDE"
+
+[overrides.editor.panel]
+background = "#EEEEEE"
+
+[overrides.editor.titleBar]
+activeBackground = "#DEDEDE"
+inactiveBackground = "#DEDEDE"
