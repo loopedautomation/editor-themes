@@ -95,30 +95,24 @@ def build_theme(theme_path: Path, output_dir: Path):
         return val
 
     def normalize_scopes(current_prefix, scopes):
+        """Normalize scopes using strict leading-dot relative convention.
+        Rules:
+        - raw starting with '.' => relative fragment, prefix + '.' + fragment
+        - raw without '.' and not equal to current prefix => simple fragment (relative)
+        - any other (contains '.') => treated as absolute and left unchanged
+        - raw equal to current prefix kept as is
+        """
         normalized = []
         for raw in scopes:
             if not raw:
                 continue
-            # leading dot => relative
             if raw.startswith('.'):
                 frag = raw[1:]
                 normalized.append(f"{current_prefix}.{frag}")
-                continue
-            # absolute if equals prefix OR already starts with prefix + '.'
-            if raw == current_prefix or raw.startswith(current_prefix + '.'):
+            elif '.' not in raw and raw != current_prefix:
+                normalized.append(f"{current_prefix}.{raw}")
+            else:
                 normalized.append(raw)
-                continue
-            # If raw contains '.' but does NOT start with prefix, treat as relative fragment style (e.g. block.js)
-            if '.' in raw and not raw.startswith(current_prefix + '.'):
-                normalized.append(f"{current_prefix}.{raw}")
-                continue
-            # If raw has no dot and differs from prefix -> relative simple fragment
-            if '.' not in raw and raw != current_prefix:
-                normalized.append(f"{current_prefix}.{raw}")
-                continue
-            # fallback
-            normalized.append(raw)
-        # de-dup preserve order
         seen = set()
         deduped = []
         for s in normalized:

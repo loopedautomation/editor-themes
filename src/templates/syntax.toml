@@ -12,17 +12,17 @@ color = "#dcdcaa"
 
 [punctuation.section]
 name = "Punctuation Section"
-scope = ["embedded.begin.js", "embedded.end.js", "embedded.begin.jsx", "embedded.end.jsx"]
+scope = [".embedded.begin.js", ".embedded.end.js", ".embedded.begin.jsx", ".embedded.end.jsx"]
 color = "primary"
 
 [punctuation.definition]
 name = "Punctuation Definition"
-scope = ["block.js", "binding-pattern.object.js", "template-expression.begin.js", "template-expression.end.js"]
+scope = [".block.js", ".binding-pattern.object.js", ".template-expression.begin.js", ".template-expression.end.js"]
 color = "comment"
 
 [punctuation]
 name = "Punctuation"
-scope = ["definition", "separator", "terminator", "accessor.optional.js.jsx"]
+scope = [".definition", ".separator", ".terminator", ".accessor.optional.js.jsx"]
 color = "comment"
 
 [keyword]
