@@ -1,0 +1,32 @@
+{
+  "name": "looped-dark",
+  "publisher": "Looped Automation",
+  "displayName": "Looped Dark",
+  "description": "Code theme inspired by the Tailwind colors.",
+  "version": "0.0.1",
+  "icon": "looped.png",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "author": {
+    "name": "Looped Automation",
+    "email": "info@looped.sh",
+    "url": "https://github.com/loopedautomation"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loopedautomation/editor-themes"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Looped Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/looped-dark.json"
+      }
+    ]
+  }
+}
