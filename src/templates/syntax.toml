@@ -1,78 +1,91 @@
 [class]
 name = "Class name"
-color = "#ECEEF5"
+color = "${palette.attribute}"
 scope = ["entity.name.type", "entity.name.class", "entity.name.namespace", "entity.name.scope-resolution"]
 
 [comment]
-color = "comment"
+color = "${palette.comment}"
 scope = ["comment", "definition.comment"]
 
 [constant]
-color = "base_content"
-scope = [".character", ".other"]
+color = "${palette.constant}"
+scope = ["constant.character", "constant.other", "support.constant", "variable.other.constant"]
 
 [constant.language]
-color = "error"
+color = "${palette.boolean}"
+scope = ["constant.language.boolean", "constant.language.null", "constant.language.undefined"]
+
+[boolean]
+name = "Boolean values"
+color = "${palette.boolean}"
+scope = ["constant.language.boolean.true", "constant.language.boolean.false"]
 
 [entity.name.filename.find-in-files]
 name = "Filename in Find in Files"
-color = "#FCFD28"
+color = "${palette.primary}"
 
 [entity.other.attribute-name]
 name = "Tag attribute"
-color = "warning"
+color = "${palette.attribute}"
 
 [function]
-color = "string"
+color = "${palette.function_name}"
 name = "Function name"
-scope = ["entity.name.function", "meta.function-call.python", "new.expr.js"]
+scope = ["entity.name.function", "meta.function-call.python", "new.expr.js", "support.function"]
 
 [inherited_class]
-color = "#e0cbff"
 name = "Inherited class"
 scope = "entity.other.inherited-class"
 style = "italic underline"
+color = "${palette.attribute}"
 
 [invalid]
-color = "#F44747"
+color = "${palette.error}"
 name = "Invalid"
 scope = "invalid"
 
 [json_string]
 name = "JSON String"
-color = "#CFCFC2"
+color = "${palette.string}"
 scope = ["meta.structure.dictionary.json", "string.quoted.double.json"]
 
 [keyword]
-scope = ["keyword", "support.type.property-name.json"]
-color = "primary_hover"
+scope = ["keyword", "storage.type", "storage.modifier"]
+color = "${palette.keyword}"
+
+[keyword.operator]
+scope = ["keyword.operator", "punctuation.accessor"]
+color = "${palette.operator}"
 
 [keyword.operator.ternary]
 scope = [
-  ".jsx",
-  ".js",
-  ".ts",
-  ".tsx"
+  "keyword.operator.ternary.jsx",
+  "keyword.operator.ternary.js",
+  "keyword.operator.ternary.ts",
+  "keyword.operator.ternary.tsx"
 ]
-color = "error"
+color = "${palette.operator}"
+
+[math_operator]
+name = "Math and Arithmetic Operators"
+scope = [
+  "keyword.operator.arithmetic",
+  "keyword.operator.assignment",
+  "keyword.operator.comparison", 
+  "keyword.operator.logical",
+  "keyword.operator.increment",
+  "keyword.operator.decrement"
+]
+color = "${palette.operator}"
 
 [library_constant]
-color = "primary_hover"
-name = "Library constant"
-scope = "support.constant"
-
-[library_function]
-color = "primary_hover"
+color = "${palette.function_name}"
 name = "Library function"
 scope = "support.function"
 
-[library_variable]
-name = "Library variable"
-scope = "support.other.variable"
-
 [line_number]
-color = "#ec4899A0"
 scope = "constant.numeric.line-number.find-in-files - match"
+color = "${palette.number}"
 
 [markdown_bold]
 name = "Markdown Bold"
@@ -85,16 +98,16 @@ scope = "markup.italic.markdown"
 style = "italic"
 
 [markdown_link_title_description]
-color = "error"
+color = "${palette.error}"
 group = true
 name = "Markdown Link Title/Description"
 
 [markdown_link_title_description.string.other.link.description.markdown]
-color = "error"
+color = "${palette.error}"
 scope = "string.other.link.description.markdown"
 
 [markdown_link_title_description.string.other.link.title.markdown]
-color = "error"
+color = "${palette.error}"
 scope = "string.other.link.title.markdown"
 
 [markdown_list_punctuation]
@@ -105,36 +118,36 @@ scope = ["punctuation.definition.list.begin.markdown"]
 [markup]
 name = "Markup Styling"
 scope = [".bold", ".italic"]
-color = "#faf5ff"
+color = "${palette.base_content}"
 
 [markup.changed]
-color = "#8b5cf6"
+color = "${palette.warning}"
 
 [markup.deleted]
-color = "#F811A0"
+color = "${palette.error}"
 
 [markup.heading]
-color = "#ec4899"
+color = "${palette.attribute}"
 
 [markup.heading.setext]
-color = "#ec4899"
+color = "${palette.attribute}"
 style = "bold"
 
 [markup.inline.raw]
-color = "#EC0095"
+color = "${palette.number}"
 
 [markup.inserted]
-color = "#f4a14d"
+color = "${palette.success}"
 
 [markup.list]
-scope = [".numbered.markdown", ".unnumbered.markdown"]
-color = "#f8f8f2"
+scope = ["markup.list.numbered.markdown", "markup.list.unnumbered.markdown"]
+color = "${palette.variable}"
 
 [markup.quote]
-color = "#F811A0"
+color = "${palette.string}"
 
 [markup.quote.markdown]
-color = "#e5e7eb"
+color = "${palette.string}"
 style = "italic"
 
 [markup.strikethrough]
@@ -142,7 +155,7 @@ style = "strikethrough"
 
 [markup.underline.link]
 scope = [".markdown", ".image.markdown"]
-color = "base_content"
+color = "${palette.base_content}"
 
 [meta.brace]
 scope = [
@@ -155,21 +168,22 @@ scope = [
   ".round.tsx",
   ".square.tsx"
 ]
-color = "error"
+color = "${palette.comment}"
 
 [meta.diff]
 scope = ["meta.diff", "diff.header", ".header"]
-color = "#75715E"
+color = "${palette.base_content}"
 
-[number]
-color = "error"
-name = "Number"
-scope = "constant.numeric"
+[constant.numeric]
+color = "${palette.number}"
 
 [punctuation]
-color = "comment"
-name = "Punctuation"
-scope = [".definition", ".separator", ".terminator", ".accessor.optional.js.jsx"]
+scope = ["punctuation.definition", "punctuation.separator", "punctuation.terminator"]
+color = "${palette.comment}"
+
+[punctuation.delimiter]
+scope = ["punctuation.section", "meta.brace", "meta.bracket"]
+color = "${palette.comment}"
 
 [punctuation.definition.binding-pattern]
 name = "Punctuation Definition"
@@ -183,7 +197,7 @@ scope = [
   ".binding-pattern.object.ts",
   ".binding-pattern.object.tsx"
 ]
-color = "comment"
+color = "${palette.comment}"
 
 [punctuation.definition.block]
 name = "Punctuation Definition"
@@ -193,7 +207,7 @@ scope = [
   ".ts",
   ".tsx"
 ]
-color = "comment"
+color = "${palette.comment}"
 
 [punctuation.definition.template-expression]
 scope = [
@@ -206,12 +220,12 @@ scope = [
   ".begin.tsx",
   ".end.tsx"
 ]
-color = "error"
+color = "${palette.tag}"
 
 [punctuation.section]
-color = "primary"
 name = "Punctuation Section"
 scope = [".embedded.begin.js", ".embedded.end.js", ".embedded.begin.jsx", ".embedded.end.jsx"]
+color = "${palette.primary}"
 
 [punctuation.section.embedded]
 scope = [
@@ -224,52 +238,80 @@ scope = [
   "punctuation.section.embedded.begin.tsx",
   "punctuation.section.embedded.end.tsx"
 ]
-color = "error"
+color = "${palette.error}"
 
 [reset]
 name = "Reset JavaScript string interpolation expression"
 scope = "meta.template.expression"
-color = "base_content"
+color = "${palette.base_content}"
 
 [storage]
-color = "base_content"
+color = "${palette.base_content}"
 name = "Storage"
 scope = "storage"
 
 [storage.type]
-color = "primary_hover"
+color = "${palette.primary_hover}"
 style = "italic"
 
 [string]
-color = "string"
+color = "${palette.string}"
 
 [support]
 name = "Library class/type"
 scope = [".type", ".class"]
-color = "string"
+color = "${palette.string}"
 style = "italic"
 
 [tag_name]
-color = "#8B8DFF"
 name = "Tag name"
 scope = ["entity.name.tag", "support.class.component.jsx", "support.class.component.js", "support.class.component.ts", "support.class.component.tsx"]
+color = "${palette.tag}"
 
 [template]
-color = "primary"
 name = "Template Definition"
 scope = ["punctuation.definition.template-expression", "punctuation.section.embedded"]
+color = "${palette.primary}"
 
 [token.debug-token]
-color = "#dcdcaa"
+color = "${palette.error}"
 
 [token.error-token]
-color = "#f44747"
+color = "${palette.error}"
 
 [token.info-token]
-color = "#6796e6"
+color = "${palette.info}"
 
 [token.warn-token]
-color = "#cca700"
+color = "${palette.warning}"
 
 [variable]
-color = "base_content"
+scope = ["variable", "support.other.variable"]
+color = "${palette.variable}"
+
+[variable.parameter]
+scope = ["variable.parameter", "meta.function.parameter"]
+color = "${palette.variable}"
+
+[variable.property]
+scope = ["variable.other.property", "support.type.property-name"]
+color = "${palette.function_name}"
+
+[type]
+name = "Types"
+scope = ["entity.name.type", "support.type", "storage.type.primitive"]
+color = "${palette.string}"
+
+[constant.character.escape]
+name = "Escape Characters"
+color = "${palette.constant}"
+
+[regex]
+name = "Regular Expressions"
+scope = ["string.regexp"]
+color = "${palette.function_name}"
+
+[url]
+name = "URLs"
+scope = ["string.other.link", "*url*", "*link*", "*uri*"]
+color = "${palette.primary}"

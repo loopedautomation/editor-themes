@@ -8,7 +8,7 @@
 "editorIndentGuide.background1" = "${palette.base_300}"
 "editorLineNumber.activeForeground" = "${palette.primary}"
 "editorLineNumber.foreground" = "${palette.base_300}"
-"editorWhitespace.foreground" = "${palette.neutral}60"
+"editorWhitespace.foreground" = "${palette.base_300}"
 "editorWidget.background" = "${palette.base_100}"
 "focusBorder" = "${palette.primary}"
 "inputOption.activeBorder" = "${palette.secondary}"
@@ -16,7 +16,6 @@
 "pickerGroup.foreground" = "${palette.comment}"
 "selection.background" = "${palette.base_content}20"
 "settings.focusedRowBackground" = "${palette.base_200}"
-"widget.shadow" = "#00000080"
 
 [editor.quickInput]
 background = "${palette.base_200}"
