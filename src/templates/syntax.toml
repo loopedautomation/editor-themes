@@ -1,309 +1,309 @@
 [[syntax]]
-settings = { foreground = "${palette.foreground}" }
+settings = {foreground = "${palette.foreground}"}
 
 [[syntax]]
 scope = [
-    "meta.embedded",
-    "source.groovy.embedded",
-    "string meta.image.inline.markdown",
+  "meta.embedded",
+  "source.groovy.embedded",
+  "string meta.image.inline.markdown"
 ]
-settings = { foreground = "${palette.foreground}" }
+settings = {foreground = "${palette.foreground}"}
 
 [[syntax]]
 name = "Comment"
 scope = ["comment", "punctuation.definition.comment"]
-settings = { foreground = "${palette.comment}" }
+settings = {foreground = "${palette.comment}"}
 
 [[syntax]]
 name = "String"
 scope = "string"
-settings = { foreground = "${palette.string}" }
+settings = {foreground = "${palette.string}"}
 
 [[syntax]]
 name = "Template Definition"
 scope = [
-    "punctuation.definition.template-expression",
-    "punctuation.section.embedded",
+  "punctuation.definition.template-expression",
+  "punctuation.section.embedded"
 ]
-settings = { foreground = "${palette.primary}" }
+settings = {foreground = "${palette.primary}"}
 
 [[syntax]]
 name = "Reset JavaScript string interpolation expression"
 scope = ["meta.template.expression"]
-settings = { foreground = "${palette.foreground}" }
+settings = {foreground = "${palette.foreground}"}
 
 [[syntax]]
 name = "Punctuation"
 scope = [
-    "punctuation.definition",
-    "punctuation.separator",
-    "punctuation.terminator",
-    "punctuation.accessor.optional.js.jsx",
+  "punctuation.definition",
+  "punctuation.separator",
+  "punctuation.terminator",
+  "punctuation.accessor.optional.js.jsx"
 ]
-settings = { foreground = "${palette.comment}" }
+settings = {foreground = "${palette.comment}"}
 
 [[syntax]]
 name = "Number"
 scope = "constant.numeric"
-settings = { foreground = "${palette.error}" }
+settings = {foreground = "${palette.error}"}
 
 [[syntax]]
 name = "Built-in constant"
 scope = [
-    "constant.language",
-    "keyword.operator.ternary.jsx",
-    "meta.brace.round.jsx",
-    "meta.brace.square.jsx",
-    "punctuation.definition.block.jsx",
-    "punctuation.definition.binding-pattern.object.jsx",
-    "punctuation.definition.template-expression.begin.jsx",
-    "punctuation.definition.template-expression.end.jsx",
-    "keyword.operator.ternary.js",
-    "meta.brace.round.js",
-    "meta.brace.square.js",
-    "punctuation.definition.block.js",
-    "punctuation.definition.binding-pattern.object.js",
-    "punctuation.definition.template-expression.begin.js",
-    "punctuation.definition.template-expression.end.js",
-    "keyword.operator.ternary.ts",
-    "meta.brace.round.ts",
-    "meta.brace.square.ts",
-    "punctuation.definition.block.ts",
-    "punctuation.definition.binding-pattern.object.ts",
-    "punctuation.definition.template-expression.begin.ts",
-    "punctuation.definition.template-expression.end.ts",
-    "keyword.operator.ternary.tsx",
-    "meta.brace.round.tsx",
-    "meta.brace.square.tsx",
-    "punctuation.definition.block.tsx",
-    "punctuation.definition.template-expression.begin.tsx",
-    "punctuation.definition.template-expression.end.tsx",
-    "punctuation.section.embedded.begin.js",
-    "punctuation.section.embedded.end.js",
-    "punctuation.section.embedded.begin.jsx",
-    "punctuation.section.embedded.end.jsx",
-    "punctuation.section.embedded.begin.ts",
-    "punctuation.section.embedded.end.ts",
-    "punctuation.section.embedded.begin.tsx",
-    "punctuation.section.embedded.end.tsx",
+  "constant.language",
+  "keyword.operator.ternary.jsx",
+  "meta.brace.round.jsx",
+  "meta.brace.square.jsx",
+  "punctuation.definition.block.jsx",
+  "punctuation.definition.binding-pattern.object.jsx",
+  "punctuation.definition.template-expression.begin.jsx",
+  "punctuation.definition.template-expression.end.jsx",
+  "keyword.operator.ternary.js",
+  "meta.brace.round.js",
+  "meta.brace.square.js",
+  "punctuation.definition.block.js",
+  "punctuation.definition.binding-pattern.object.js",
+  "punctuation.definition.template-expression.begin.js",
+  "punctuation.definition.template-expression.end.js",
+  "keyword.operator.ternary.ts",
+  "meta.brace.round.ts",
+  "meta.brace.square.ts",
+  "punctuation.definition.block.ts",
+  "punctuation.definition.binding-pattern.object.ts",
+  "punctuation.definition.template-expression.begin.ts",
+  "punctuation.definition.template-expression.end.ts",
+  "keyword.operator.ternary.tsx",
+  "meta.brace.round.tsx",
+  "meta.brace.square.tsx",
+  "punctuation.definition.block.tsx",
+  "punctuation.definition.template-expression.begin.tsx",
+  "punctuation.definition.template-expression.end.tsx",
+  "punctuation.section.embedded.begin.js",
+  "punctuation.section.embedded.end.js",
+  "punctuation.section.embedded.begin.jsx",
+  "punctuation.section.embedded.end.jsx",
+  "punctuation.section.embedded.begin.ts",
+  "punctuation.section.embedded.end.ts",
+  "punctuation.section.embedded.begin.tsx",
+  "punctuation.section.embedded.end.tsx"
 ]
-settings = { foreground = "${palette.error}" }
+settings = {foreground = "${palette.error}"}
 
 [[syntax]]
 name = "User-defined constant"
 scope = "constant.character, constant.other"
-settings = { foreground = "${palette.foreground}" }
+settings = {foreground = "${palette.foreground}"}
 
 [[syntax]]
 name = "Variable"
 scope = "variable"
-settings = { fontStyle = "", foreground = "${palette.foreground}" }
+settings = {fontStyle = "", foreground = "${palette.foreground}"}
 
 [[syntax]]
 name = "Keyword"
 scope = ["keyword", "support.type.property-name.json"]
-settings = { foreground = "${palette.primary_hover}" }
+settings = {foreground = "${palette.primary_hover}"}
 
 [[syntax]]
 name = "Storage"
 scope = "storage"
-settings = { fontStyle = "", foreground = "${palette.foreground}" }
+settings = {fontStyle = "", foreground = "${palette.foreground}"}
 
 [[syntax]]
 name = "Storage type"
 scope = "storage.type"
-settings = { fontStyle = "italic", foreground = "${palette.primary_hover}" }
+settings = {fontStyle = "italic", foreground = "${palette.primary_hover}"}
 
 [[syntax]]
 name = "Class name"
 scope = "entity.name.type, entity.name.class, entity.name.namespace, entity.name.scope-resolution"
-settings = { foreground = "#ECEEF5" }
+settings = {foreground = "#ECEEF5"}
 
 [[syntax]]
 name = "Inherited class"
 scope = "entity.other.inherited-class"
-settings = { fontStyle = "italic underline", foreground = "#e0cbff" }
+settings = {fontStyle = "italic underline", foreground = "#e0cbff"}
 
 [[syntax]]
 name = "Function name"
 scope = ["entity.name.function", "meta.function-call.python", "new.expr.js"]
-settings = { fontStyle = "", foreground = "${palette.string}" }
+settings = {fontStyle = "", foreground = "${palette.string}"}
 
 [[syntax]]
 name = "Function argument"
 scope = "variable.parameter"
-settings = { fontStyle = "italic", foreground = "${palette.foreground}" }
+settings = {fontStyle = "italic", foreground = "${palette.foreground}"}
 
 [[syntax]]
 name = "Tag name"
 scope = [
-    "entity.name.tag",
-    "support.class.component.jsx",
-    "support.class.component.js",
-    "support.class.component.ts",
-    "support.class.component.tsx",
+  "entity.name.tag",
+  "support.class.component.jsx",
+  "support.class.component.js",
+  "support.class.component.ts",
+  "support.class.component.tsx"
 ]
-settings = { fontStyle = "", foreground = "#8B8DFF" }
+settings = {fontStyle = "", foreground = "#8B8DFF"}
 
 [[syntax]]
 name = "Tag attribute"
 scope = "entity.other.attribute-name"
-settings = { fontStyle = "", foreground = "${palette.warning}" }
+settings = {fontStyle = "", foreground = "${palette.warning}"}
 
 [[syntax]]
 name = "Library function"
 scope = "support.function"
-settings = { fontStyle = "", foreground = "${palette.primary_hover}" }
+settings = {fontStyle = "", foreground = "${palette.primary_hover}"}
 
 [[syntax]]
 name = "Library constant"
 scope = "support.constant"
-settings = { fontStyle = "", foreground = "${palette.primary_hover}" }
+settings = {fontStyle = "", foreground = "${palette.primary_hover}"}
 
 [[syntax]]
 name = "Library class/type"
 scope = "support.type, support.class"
-settings = { fontStyle = "italic", foreground = "${palette.string}" }
+settings = {fontStyle = "italic", foreground = "${palette.string}"}
 
 [[syntax]]
 name = "Library variable"
 scope = "support.other.variable"
-settings = { fontStyle = "" }
+settings = {fontStyle = ""}
 
 [[syntax]]
 name = "Invalid"
 scope = "invalid"
-settings = { fontStyle = "", foreground = "#F44747" }
+settings = {fontStyle = "", foreground = "#F44747"}
 
 [[syntax]]
 name = "Invalid deprecated"
 scope = "invalid.deprecated"
-settings = { foreground = "#F44747" }
+settings = {foreground = "#F44747"}
 
 [[syntax]]
 name = "JSON String"
 scope = "meta.structure.dictionary.json string.quoted.double.json"
-settings = { foreground = "#CFCFC2" }
+settings = {foreground = "#CFCFC2"}
 
 [[syntax]]
 name = "diff.header"
 scope = "meta.diff, meta.diff.header"
-settings = { foreground = "#75715E" }
+settings = {foreground = "#75715E"}
 
 [[syntax]]
 name = "diff.deleted"
 scope = "markup.deleted"
-settings = { foreground = "#F811A0" }
+settings = {foreground = "#F811A0"}
 
 [[syntax]]
 name = "diff.inserted"
 scope = "markup.inserted"
-settings = { foreground = "#f4a14d" }
+settings = {foreground = "#f4a14d"}
 
 [[syntax]]
 name = "diff.changed"
 scope = "markup.changed"
-settings = { foreground = "#8b5cf6" }
+settings = {foreground = "#8b5cf6"}
 
 [[syntax]]
 scope = "constant.numeric.line-number.find-in-files - match"
-settings = { foreground = "#ec4899A0" }
+settings = {foreground = "#ec4899A0"}
 
 [[syntax]]
 scope = "entity.name.filename.find-in-files"
-settings = { foreground = "#FCFD28" }
+settings = {foreground = "#FCFD28"}
 
 [[syntax]]
 name = "Markup Quote"
 scope = "markup.quote"
-settings = { foreground = "#F811A0" }
+settings = {foreground = "#F811A0"}
 
 [[syntax]]
 name = "Markup Lists"
 scope = "markup.list"
-settings = { foreground = "#d946ef" }
+settings = {foreground = "#d946ef"}
 
 [[syntax]]
 name = "Markup Styling"
 scope = "markup.bold, markup.italic"
-settings = { foreground = "#faf5ff" }
+settings = {foreground = "#faf5ff"}
 
 [[syntax]]
 name = "Markup Inline"
 scope = "markup.inline.raw"
-settings = { fontStyle = "", foreground = "#EC0095" }
+settings = {fontStyle = "", foreground = "#EC0095"}
 
 [[syntax]]
 name = "Markup Headings"
 scope = "markup.heading"
-settings = { foreground = "#ec4899" }
+settings = {foreground = "#ec4899"}
 
 [[syntax]]
 name = "Markup Setext Header"
 scope = "markup.heading.setext"
-settings = { foreground = "#ec4899", fontStyle = "bold" }
+settings = {foreground = "#ec4899", fontStyle = "bold"}
 
 [[syntax]]
 name = "Markup Headings"
 scope = "markup.heading.markdown"
-settings = { fontStyle = "bold" }
+settings = {fontStyle = "bold"}
 
 [[syntax]]
 name = "Markdown Quote"
 scope = "markup.quote.markdown"
-settings = { fontStyle = "italic", foreground = "#e5e7eb" }
+settings = {fontStyle = "italic", foreground = "#e5e7eb"}
 
 [[syntax]]
 name = "Markdown Bold"
 scope = "markup.bold.markdown"
-settings = { fontStyle = "bold" }
+settings = {fontStyle = "bold"}
 
 [[syntax]]
 name = "Markdown Link Title/Description"
 scope = "string.other.link.title.markdown,string.other.link.description.markdown"
-settings = { foreground = "${palette.error}" }
+settings = {foreground = "${palette.error}"}
 
 [[syntax]]
 name = "Markdown Underline Link/Image"
 scope = "markup.underline.link.markdown,markup.underline.link.image.markdown"
-settings = { foreground = "${palette.foreground}" }
+settings = {foreground = "${palette.foreground}"}
 
 [[syntax]]
 name = "Markdown Emphasis"
 scope = "markup.italic.markdown"
-settings = { fontStyle = "italic" }
+settings = {fontStyle = "italic"}
 
 [[syntax]]
 scope = "markup.strikethrough"
-settings = { fontStyle = "strikethrough" }
+settings = {fontStyle = "strikethrough"}
 
 [[syntax]]
 name = "Markdown Punctuation Definition Link"
 scope = "markup.list.unnumbered.markdown, markup.list.numbered.markdown"
-settings = { foreground = "#f8f8f2" }
+settings = {foreground = "#f8f8f2"}
 
 [[syntax]]
 name = "Markdown List Punctuation"
 scope = ["punctuation.definition.list.begin.markdown"]
-settings = { foreground = "${palette.primary}" }
+settings = {foreground = "${palette.primary}"}
 
 [[syntax]]
 scope = "token.info-token"
-settings = { foreground = "#6796e6" }
+settings = {foreground = "#6796e6"}
 
 [[syntax]]
 scope = "token.warn-token"
-settings = { foreground = "#cd9731" }
+settings = {foreground = "#cd9731"}
 
 [[syntax]]
 scope = "token.error-token"
-settings = { foreground = "#f44747" }
+settings = {foreground = "#f44747"}
 
 [[syntax]]
 scope = "token.debug-token"
-settings = { foreground = "#b267e6" }
+settings = {foreground = "#b267e6"}
 
 [[syntax]]
 name = "this.self"
 scope = "variable.language"
-settings = { foreground = "#EC0095" }
+settings = {foreground = "#EC0095"}

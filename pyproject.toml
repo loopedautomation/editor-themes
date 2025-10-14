@@ -5,5 +5,8 @@ description = "Looped Automation Editor Themes"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "ruff>=0.14.0",
+    "toml-sort>=0.24.3",
+    "tool>=0.8.0",
     "watchdog>=6.0.0",
 ]

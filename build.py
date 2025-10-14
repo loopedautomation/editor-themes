@@ -3,9 +3,11 @@ import json
 import re
 from pathlib import Path
 
+
 def load_toml(path: Path):
     with open(path, "rb") as f:
         return tomllib.load(f)
+
 
 def deep_merge(a, b):
     for key, val in b.items():
@@ -15,12 +17,14 @@ def deep_merge(a, b):
             a[key] = val
     return a
 
+
 def resolve_vars(obj, context):
     if isinstance(obj, dict):
         return {k: resolve_vars(v, context) for k, v in obj.items()}
     if isinstance(obj, list):
         return [resolve_vars(v, context) for v in obj]
     if isinstance(obj, str):
+
         def repl(m):
             path = m.group(1).split(".")
             val = context
@@ -29,10 +33,12 @@ def resolve_vars(obj, context):
                 if val is None:
                     return m.group(0)
             return val
+
         return re.sub(r"\$\{([a-zA-Z0-9_.]+)\}", repl, obj)
     return obj
 
-def flatten_dict(d, parent_key='', sep='.'):
+
+def flatten_dict(d, parent_key="", sep="."):
     """Flatten a nested dictionary into a single dictionary with dotted keys."""
     items = []
     for k, v in d.items():
@@ -42,6 +48,7 @@ def flatten_dict(d, parent_key='', sep='.'):
         else:
             items.append((new_key, v))
     return dict(items)
+
 
 def build_theme(theme_path: Path, output_dir: Path):
     theme = load_toml(theme_path)
@@ -75,11 +82,14 @@ def build_theme(theme_path: Path, output_dir: Path):
     }
 
     output_dir.mkdir(exist_ok=True)
-    out_path = output_dir / f"{resolved['metadata']['name'].lower().replace(' ', '-')}.json"
+    out_path = (
+        output_dir / f"{resolved['metadata']['name'].lower().replace(' ', '-')}.json"
+    )
     with open(out_path, "w") as f:
         json.dump(vscode_theme, f, indent=2)
 
     print(f"✅ Built {out_path}")
+
 
 if __name__ == "__main__":
     themes_dir = Path("src/themes")
