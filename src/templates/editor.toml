@@ -228,3 +228,19 @@ foreground = "${palette.warning}"
 
 [editor.notificationsInfoIcon]
 foreground = "${palette.info}"
+
+[editor.chat]
+requestBubbleBackground = "${palette.base_300}50"
+requestBubbleHoverBackground = "${palette.base_300}80"
+slashCommandBackground = "${palette.base_200}"
+slashCommandForeground = "${palette.base_content}"
+checkpointSeparator = "${palette.base_300}"
+
+[editor.inlineChat]
+background = "${palette.base_200}"
+foreground = "${palette.base_content}"
+border = "${palette.base_300}"
+
+[editor.inlineChatInput]
+background = "${palette.base_200}"
+border = "${palette.base_300}"

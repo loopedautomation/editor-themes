@@ -155,7 +155,17 @@
     "notificationToast.border": "#313338",
     "notificationsErrorIcon.foreground": "#D02E1E",
     "notificationsWarningIcon.foreground": "#EE9A00",
-    "notificationsInfoIcon.foreground": "#8B8DFF"
+    "notificationsInfoIcon.foreground": "#8B8DFF",
+    "chat.requestBubbleBackground": "#31333850",
+    "chat.requestBubbleHoverBackground": "#31333880",
+    "chat.slashCommandBackground": "#14161B",
+    "chat.slashCommandForeground": "#FAF9F6",
+    "chat.checkpointSeparator": "#313338",
+    "inlineChat.background": "#14161B",
+    "inlineChat.foreground": "#FAF9F6",
+    "inlineChat.border": "#313338",
+    "inlineChatInput.background": "#14161B",
+    "inlineChatInput.border": "#313338"
   },
   "tokenColors": [
     {
