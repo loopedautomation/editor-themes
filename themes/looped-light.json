@@ -156,7 +156,16 @@
     "notificationsErrorIcon.foreground": "#D02E1E",
     "notificationsWarningIcon.foreground": "#EE9A00",
     "notificationsInfoIcon.foreground": "#8B8DFF",
-    "chat.requestBackground": "#EEEEEE"
+    "chat.requestBubbleBackground": "#DEDEDE50",
+    "chat.requestBubbleHoverBackground": "#DEDEDE80",
+    "chat.slashCommandBackground": "#EEEEEE",
+    "chat.slashCommandForeground": "#030306",
+    "chat.checkpointSeparator": "#DEDEDE",
+    "inlineChat.background": "#EEEEEE",
+    "inlineChat.foreground": "#030306",
+    "inlineChat.border": "#DEDEDE",
+    "inlineChatInput.background": "#EEEEEE",
+    "inlineChatInput.border": "#DEDEDE"
   },
   "tokenColors": [
     {

@@ -23,12 +23,12 @@
   "contributes": {
     "themes": [
       {
-        "label": "Looped Dark",
+        "label": "Looped Dark TMP",
         "uiTheme": "vs-dark",
         "path": "./themes/looped-dark.json"
       },
       {
-        "label": "Looped Light",
+        "label": "Looped Light TMP",
         "uiTheme": "vs",
         "path": "./themes/looped-light.json"
       }
