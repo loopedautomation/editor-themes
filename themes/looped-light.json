@@ -155,7 +155,8 @@
     "notificationToast.border": "#DEDEDE",
     "notificationsErrorIcon.foreground": "#D02E1E",
     "notificationsWarningIcon.foreground": "#EE9A00",
-    "notificationsInfoIcon.foreground": "#8B8DFF"
+    "notificationsInfoIcon.foreground": "#8B8DFF",
+    "chat.requestBackground": "#EEEEEE"
   },
   "tokenColors": [
     {

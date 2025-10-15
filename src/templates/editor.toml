@@ -228,3 +228,6 @@ foreground = "${palette.warning}"
 
 [editor.notificationsInfoIcon]
 foreground = "${palette.info}"
+
+[editor.chat]
+requestBackground = "${palette.base_200}"
