@@ -63,11 +63,11 @@ The debugger automatically reloads whenever the generated theme JSON files chang
 - `watch.py` filesystem watcher that rebuilds themes on change
 - `package.json` VS Code extension manifest referencing generated themes
 
-# Warp Theme
+# Warp Themes
 
-- The Warp terminal theme lives in `themes/looped-*.json`.
-- Copy or symlink the file into `~/.warp/themes/looped-*.json`, or use Warp's Settings → Themes → `Import from file` to pick it directly from this repository.
-- Select **Looped Dark** inside Warp to apply the palette.
+- The terminal presets sit under `warp/looped-dark.yaml` and `warp/looped-light.yaml`.
+- Run `./warp/install.sh` to copy every YAML file in the folder into `~/.warp/themes/`.
+- After installation, open Warp → Settings → Themes and pick **Looped Dark** or **Looped Light**.
 
 ## Oh My Posh Theme
 
