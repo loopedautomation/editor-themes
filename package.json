@@ -1,9 +1,9 @@
 {
   "name": "looped-themes",
-  "publisher": "Looped Automation",
+  "publisher": "LoopedAutomation",
   "displayName": "Looped Themes",
   "description": "Looped Automation editor themes - Dark and Light variants",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "icon": "looped.png",
   "engines": {
     "vscode": "^1.72.0"
