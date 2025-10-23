@@ -56,11 +56,14 @@ def build_zed_theme_item(theme_path: Path):
     """Build and return a single Zed theme item (for inclusion in a combined file)."""
     theme = load_toml(theme_path)
 
-    # Load imports
+    # Load imports - only process imports that start with "zed_"
     context = {}
     for name, imp_path in theme.get("import", {}).items():
-        imp_data = load_toml(Path(theme_path.parent) / Path(imp_path))
-        context = deep_merge(context, imp_data)
+        if name.startswith("zed_"):
+            imp_data = load_toml(Path(theme_path.parent) / Path(imp_path))
+            # Just merge the imported data directly into context
+            # The imported files already have the correct structure (e.g., {editor: {...}, syntax: {...}})
+            context = deep_merge(context, imp_data)
 
     # Merge theme data
     theme_data = deep_merge(context, theme)
@@ -80,7 +83,22 @@ def build_zed_theme_item(theme_path: Path):
     # Build style object
     style = {}
 
-    # Flatten editor colors
+    # First, add top-level properties (like background, text, icon, etc.)
+    # These are properties that aren't nested in sections
+    top_level_excludes = {"metadata", "palette", "import", "editor", "syntax"}
+    for key, value in resolved.items():
+        if key not in top_level_excludes and not isinstance(value, dict):
+            # Top-level scalar properties go directly into style
+            zed_key = key.replace("-", "_")
+            style[zed_key] = value
+        elif key not in top_level_excludes and isinstance(value, dict):
+            # Top-level dict properties (like [border], [text], [icon]) get flattened
+            flat_top = flatten_dict({key: value})
+            for nested_key, nested_value in flat_top.items():
+                zed_key = nested_key.replace("-", "_")
+                style[zed_key] = nested_value
+
+    # Then, flatten editor colors (these can override top-level if needed)
     if "editor" in resolved:
         flat_editor = flatten_dict(resolved["editor"])
         for key, value in flat_editor.items():
@@ -91,28 +109,29 @@ def build_zed_theme_item(theme_path: Path):
     # Add syntax colors
     if "syntax" in resolved:
         style["syntax"] = {}
+
+        # Flatten the syntax section to handle nested tables like [syntax.comment.doc]
         flat_syntax = flatten_dict(resolved["syntax"])
 
-        # Group syntax properties by scope
+        # Group properties by scope name
         syntax_scopes = {}
         for key, value in flat_syntax.items():
             parts = key.split(".")
-            if len(parts) >= 2:
-                # Extract scope (everything except the last part which is the property)
-                scope = ".".join(parts[:-1])
-                prop = parts[-1]
+            if len(parts) == 1:
+                # Single property like "color" - skip root-level syntax properties
+                continue
+            else:
+                # Nested like "comment.color" or "comment.doc.color"
+                # The scope is everything except the last part (which is the property)
+                scope_name = ".".join(parts[:-1])
+                prop_name = parts[-1]
 
-                if scope not in syntax_scopes:
-                    syntax_scopes[scope] = {}
-                syntax_scopes[scope][prop] = value
-            elif len(parts) == 1:
-                # Top-level syntax property
-                scope = parts[0]
-                if scope not in syntax_scopes:
-                    syntax_scopes[scope] = {}
+            if scope_name not in syntax_scopes:
+                syntax_scopes[scope_name] = {}
+            syntax_scopes[scope_name][prop_name] = value
 
         # Convert to Zed format
-        for scope, props in syntax_scopes.items():
+        for scope_name, props in syntax_scopes.items():
             scope_style = {}
 
             if "color" in props:
@@ -128,7 +147,7 @@ def build_zed_theme_item(theme_path: Path):
             else:
                 scope_style["font_weight"] = None
 
-            style["syntax"][scope] = scope_style
+            style["syntax"][scope_name] = scope_style
 
     # Return the inner theme entry (to be combined into a single file)
     theme_item = {"name": theme_name, "appearance": appearance, "style": style}
@@ -136,19 +155,18 @@ def build_zed_theme_item(theme_path: Path):
 
 
 if __name__ == "__main__":
-    themes_dir = Path("src/themes/zed")
-    output_dir = Path("zed/themes")
-    output_dir.mkdir(parents=True, exist_ok=True)
+    # Read single-file-per-theme TOML files from the top-level src/themes folder
+    themes_dir = Path("src/themes")
     output_file = Path("zed/themes/looped.json")
 
-    # Ensure source directory exists
+    # Ensure the source directory exists
     if not themes_dir.exists():
-        print(f"⚠️  Zed themes directory not found: {themes_dir}")
+        print(f"⚠️  Themes directory not found: {themes_dir}")
         print("Creating directory...")
         themes_dir.mkdir(parents=True, exist_ok=True)
 
-    # Collect theme items
-    theme_files = sorted(list(themes_dir.glob("*.toml")))
+    # Collect only top-level TOML files from src/themes (one file per theme)
+    theme_files = sorted([p for p in themes_dir.glob("*.toml") if p.is_file()])
     if not theme_files:
         print(f"⚠️  No theme files found in {themes_dir}")
     else:
@@ -161,7 +179,7 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f"❌ Failed to build theme '{theme_file}': {e}")
 
-        # Build combined object
+        # Build combined object to emit a single JSON file which contains an array of themes
         combined = {
             "$schema": "https://zed.dev/schema/themes/v0.2.0.json",
             "name": "Looped",

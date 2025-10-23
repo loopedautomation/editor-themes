@@ -278,7 +278,20 @@ def build_theme(theme_path: Path, output_dir: Path):
 
 
 if __name__ == "__main__":
-    themes_dir = Path("src/themes/code")
+    themes_dir = Path("src/themes")
     output_dir = Path("code")
-    for theme_file in themes_dir.glob("*.toml"):
-        build_theme(theme_file, output_dir)
+
+    if not themes_dir.exists():
+        print(f"⚠️  Themes directory not found: {themes_dir}")
+        exit(1)
+
+    theme_files = list(themes_dir.glob("*.toml"))
+    if not theme_files:
+        print(f"⚠️  No theme files found in {themes_dir}")
+        exit(1)
+
+    for theme_file in theme_files:
+        try:
+            build_theme(theme_file, output_dir)
+        except Exception as e:
+            print(f"❌ Failed to build theme '{theme_file}': {e}")

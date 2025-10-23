@@ -1,9 +1,12 @@
 [import]
-editor = "../../templates/zed/editor.toml"
-syntax = "../../templates/zed/syntax.toml"
+editor = "../templates/code/editor.toml"
+syntax = "../templates/code/syntax.toml"
+zed_editor = "../templates/zed/editor.toml"
+zed_syntax = "../templates/zed/syntax.toml"
 
 [metadata]
 name = "Looped Light"
+semanticHighlighting = true
 type = "light"
 
 [palette]
