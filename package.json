@@ -3,7 +3,7 @@
   "publisher": "LoopedAutomation",
   "displayName": "Looped Themes",
   "description": "Looped Automation's themes for VS Code",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "icon": "looped.png",
   "engines": {
     "vscode": "^1.72.0"
