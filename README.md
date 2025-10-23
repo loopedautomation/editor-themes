@@ -6,17 +6,8 @@ Looped Automation's editor themes for VS Code, Zed, Warp, and Oh My Posh are gen
 
 ## Prerequisites
 
-- Git
 - Python 3.13 or newer (the build script relies on the standard `tomllib` module)
 - [uv](https://docs.astral.sh/uv/) for managing the virtual environment and running commands
-
-You can install uv with:
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-After installation, ensure `uv` is on your `PATH` and restart your shell if needed.
 
 ## Getting Started
 
@@ -47,7 +38,7 @@ Run the file watcher during active development (rebuilds all themes whenever tem
 uv run watch.py
 ```
 
-Keep the watcher running while you edit files in `src/templates/` or `src/themes/`. Generated JSON files appear in `themes/` and are ready for testing in VS Code.
+Keep the watcher running while you edit files in `src/templates/` or `src/themes/`. Generated JSON files appear in `code/` or `zed/themes/` and are ready for testing in your editor.
 
 ## Testing in VS Code
 
@@ -61,14 +52,15 @@ The debugger automatically reloads whenever the generated theme JSON files chang
 
 - `src/templates/` reusable color definitions and shared utilities
 - `src/themes/` top-level theme descriptors that import templates and overrides
-- `themes/` generated VS Code themes consumed by the extension
-- `zed/` Zed editor extension and generated themes
+- `code/` generated VS Code themes consumed by the extension
+- `zed/themes/` generated Zed themes
 - `warp/` Warp terminal themes
 - `oh-my-posh/` Oh My Posh prompt themes
 - `build.py` VS Code template compiler invoked by the watcher or directly
 - `build_zed.py` Zed template compiler
 - `watch.py` filesystem watcher that rebuilds all themes on change
 - `package.json` VS Code extension manifest referencing generated themes
+- `zed/extension.toml` Zed extension configuration
 
 ## Zed Themes
 
@@ -113,4 +105,4 @@ See [zed/README.md](zed/README.md) for detailed installation and usage instructi
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT](LICENSE) License.
