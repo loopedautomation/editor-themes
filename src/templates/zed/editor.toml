@@ -2,193 +2,244 @@
 # Based on Zed v0.2.0 theme schema
 
 # Root-level properties
+[root]
 background = "${palette.base_100}"
 foreground = "${palette.base_content}"
+border = "${palette.base_300}"
+text = "${palette.base_content}"
+icon = "${palette.base_content}"
 
 # Borders
-"border" = "${palette.base_300}"
-"border.variant" = "${palette.base_300}"
-"border.focused" = "${palette.primary}"
-"border.selected" = "${palette.primary}"
-"border.transparent" = "#00000000"
-"border.disabled" = "${palette.base_300}50"
+[border]
+variant = "${palette.base_300}"
+focused = "${palette.primary}"
+selected = "${palette.primary}"
+transparent = "#00000000"
+disabled = "${palette.base_300}50"
 
 # Surfaces
-"elevated_surface.background" = "${palette.base_200}"
-"surface.background" = "${palette.base_100}"
+[elevated_surface]
+background = "${palette.base_200}"
+
+[surface]
+background = "${palette.base_100}"
 
 # Elements
-"element.background" = "${palette.base_100}"
-"element.hover" = "${palette.base_200}"
-"element.active" = "${palette.primary}30"
-"element.selected" = "${palette.primary}20"
-"element.disabled" = "${palette.base_300}30"
+[element]
+background = "${palette.base_100}"
+hover = "${palette.base_200}"
+active = "${palette.primary}30"
+selected = "${palette.primary}20"
+disabled = "${palette.base_300}30"
 
 # Ghost Elements
-"ghost_element.background" = "transparent"
-"ghost_element.hover" = "${palette.base_200}50"
-"ghost_element.active" = "${palette.primary}20"
-"ghost_element.selected" = "${palette.primary}15"
-"ghost_element.disabled" = "${palette.base_300}20"
+[ghost_element]
+background = "transparent"
+hover = "${palette.base_200}50"
+active = "${palette.primary}20"
+selected = "${palette.primary}15"
+disabled = "${palette.base_300}20"
 
 # Drop Target
-"drop_target.background" = "${palette.primary}30"
+[drop_target]
+background = "${palette.primary}30"
 
 # Text
-"text" = "${palette.base_content}"
-"text.muted" = "${palette.comment}"
-"text.placeholder" = "${palette.base_300}"
-"text.disabled" = "${palette.base_300}50"
-"text.accent" = "${palette.primary}"
+[text]
+muted = "${palette.comment}"
+placeholder = "${palette.base_300}"
+disabled = "${palette.base_300}50"
+accent = "${palette.primary}"
 
 # Icons
-"icon" = "${palette.base_content}"
-"icon.muted" = "${palette.comment}"
-"icon.disabled" = "${palette.base_300}50"
-"icon.placeholder" = "${palette.base_300}"
-"icon.accent" = "${palette.primary}"
+[icon]
+muted = "${palette.comment}"
+disabled = "${palette.base_300}50"
+placeholder = "${palette.base_300}"
+accent = "${palette.primary}"
 
 # Status Bar
-"status_bar.background" = "${palette.base_100}"
+[status_bar]
+background = "${palette.base_100}"
 
 # Title Bar
-"title_bar.background" = "${palette.base_100}"
-"title_bar.inactive_background" = "${palette.base_100}"
+[title_bar]
+background = "${palette.base_100}"
+inactive_background = "${palette.base_100}"
 
 # Toolbar
-"toolbar.background" = "${palette.base_100}"
+[toolbar]
+background = "${palette.base_100}"
 
 # Tab Bar
-"tab_bar.background" = "${palette.base_100}"
-"tab.inactive_background" = "${palette.base_100}"
-"tab.active_background" = "${palette.base_200}"
+[tab_bar]
+background = "${palette.base_100}"
+
+[tab]
+inactive_background = "${palette.base_200}"
+active_background = "${palette.base_100}"
 
 # Search
-"search.match_background" = "${palette.warning}40"
+[search]
+match_background = "${palette.warning}40"
 
 # Panel
-"panel.background" = "${palette.base_100}"
-"panel.focused_border" = "${palette.primary}"
+[panel]
+background = "${palette.base_100}"
+focused_border = "${palette.primary}"
 
 # Pane
-"pane.focused_border" = "${palette.primary}"
+[pane]
+focused_border = "${palette.primary}"
 
 # Scrollbar
-"scrollbar.thumb.background" = "${palette.base_300}80"
-"scrollbar.thumb.hover_background" = "${palette.base_300}"
-"scrollbar.thumb.border" = "${palette.base_300}"
-"scrollbar.track.background" = "transparent"
-"scrollbar.track.border" = "transparent"
+[scrollbar.thumb]
+background = "${palette.base_300}80"
+hover_background = "${palette.base_300}"
+border = "${palette.base_300}"
+
+[scrollbar.track]
+background = "transparent"
+border = "${palette.base_300}"
 
 # Editor
-"editor.foreground" = "${palette.base_content}"
-"editor.background" = "${palette.base_100}"
-"editor.gutter.background" = "${palette.base_100}"
-"editor.subheader.background" = "${palette.base_200}"
-"editor.active_line.background" = "${palette.base_200}"
-"editor.highlighted_line.background" = "${palette.primary}15"
-"editor.line_number" = "${palette.base_300}"
-"editor.active_line_number" = "${palette.primary}"
-"editor.hover_line_number" = "${palette.base_content}"
-"editor.invisible" = "${palette.base_300}30"
-"editor.wrap_guide" = "${palette.base_300}30"
-"editor.active_wrap_guide" = "${palette.base_300}"
-"editor.document_highlight.read_background" = "${palette.info}30"
-"editor.document_highlight.write_background" = "${palette.warning}30"
+[editor]
+foreground = "${palette.base_content}"
+background = "${palette.base_100}"
+line_number = "${palette.base_300}"
+active_line_number = "${palette.primary}"
+hover_line_number = "${palette.base_content}"
+invisible = "${palette.base_300}30"
+wrap_guide = "${palette.base_300}30"
+active_wrap_guide = "${palette.base_300}"
+
+[editor.gutter]
+background = "${palette.base_100}"
+
+[editor.subheader]
+background = "${palette.base_100}"
+
+[editor.active_line]
+background = "${palette.base_100}"
+
+[editor.highlighted_line]
+background = "${palette.primary}15"
+
+[editor.document_highlight]
+read_background = "${palette.info}30"
+write_background = "${palette.warning}30"
 
 # Terminal
-"terminal.background" = "${palette.base_100}"
-"terminal.foreground" = "${palette.base_content}"
-"terminal.bright_foreground" = "${palette.base_content}"
-"terminal.dim_foreground" = "${palette.comment}"
+[terminal]
+background = "${palette.base_100}"
+foreground = "${palette.base_content}"
+bright_foreground = "${palette.base_content}"
+dim_foreground = "${palette.comment}"
 
 # Terminal ANSI Colors
-"terminal.ansi.black" = "#000000"
-"terminal.ansi.red" = "${palette.error}"
-"terminal.ansi.green" = "${palette.success}"
-"terminal.ansi.yellow" = "${palette.warning}"
-"terminal.ansi.blue" = "${palette.info}"
-"terminal.ansi.magenta" = "${palette.primary}"
-"terminal.ansi.cyan" = "${palette.secondary}"
-"terminal.ansi.white" = "${palette.base_content}"
-"terminal.ansi.bright_black" = "${palette.base_300}"
-"terminal.ansi.bright_red" = "${palette.error}"
-"terminal.ansi.bright_green" = "${palette.success}"
-"terminal.ansi.bright_yellow" = "${palette.warning}"
-"terminal.ansi.bright_blue" = "${palette.info}"
-"terminal.ansi.bright_magenta" = "${palette.primary}"
-"terminal.ansi.bright_cyan" = "${palette.secondary}"
-"terminal.ansi.bright_white" = "${palette.base_content}"
-"terminal.ansi.dim_black" = "#00000080"
-"terminal.ansi.dim_red" = "${palette.error}80"
-"terminal.ansi.dim_green" = "${palette.success}80"
-"terminal.ansi.dim_yellow" = "${palette.warning}80"
-"terminal.ansi.dim_blue" = "${palette.info}80"
-"terminal.ansi.dim_magenta" = "${palette.primary}80"
-"terminal.ansi.dim_cyan" = "${palette.secondary}80"
-"terminal.ansi.dim_white" = "${palette.base_content}80"
+[terminal.ansi]
+black = "#000000"
+red = "${palette.error}"
+green = "${palette.success}"
+yellow = "${palette.warning}"
+blue = "${palette.info}"
+magenta = "${palette.primary}"
+cyan = "${palette.secondary}"
+white = "${palette.base_content}"
+bright_black = "${palette.base_300}"
+bright_red = "${palette.error}"
+bright_green = "${palette.success}"
+bright_yellow = "${palette.warning}"
+bright_blue = "${palette.info}"
+bright_magenta = "${palette.primary}"
+bright_cyan = "${palette.secondary}"
+bright_white = "${palette.base_content}"
+dim_black = "#00000080"
+dim_red = "${palette.error}80"
+dim_green = "${palette.success}80"
+dim_yellow = "${palette.warning}80"
+dim_blue = "${palette.info}80"
+dim_magenta = "${palette.primary}80"
+dim_cyan = "${palette.secondary}80"
+dim_white = "${palette.base_content}80"
 
 # Link Text
-"link_text.hover" = "${palette.primary}"
+[link_text]
+hover = "${palette.primary}"
 
 # Version Control
-"version_control.added" = "${palette.success}"
-"version_control.modified" = "${palette.info}"
-"version_control.deleted" = "${palette.error}"
+[version_control]
+added = "${palette.success}"
+modified = "${palette.info}"
+deleted = "${palette.error}"
 
-# Status Indicators (with backgrounds and borders)
-"conflict" = "${palette.warning}"
-"conflict.background" = "${palette.warning}1a"
-"conflict.border" = "${palette.warning}50"
+# Status Indicators
+[conflict]
+color = "${palette.warning}"
+background = "${palette.warning}1a"
+border = "${palette.warning}50"
 
-"created" = "${palette.success}"
-"created.background" = "${palette.success}1a"
-"created.border" = "${palette.success}50"
+[created]
+color = "${palette.success}"
+background = "${palette.success}1a"
+border = "${palette.success}50"
 
-"deleted" = "${palette.error}"
-"deleted.background" = "${palette.error}1a"
-"deleted.border" = "${palette.error}50"
+[deleted]
+color = "${palette.error}"
+background = "${palette.error}1a"
+border = "${palette.error}50"
 
-"error" = "${palette.error}"
-"error.background" = "${palette.error}1a"
-"error.border" = "${palette.error}50"
+[error]
+color = "${palette.error}"
+background = "${palette.error}1a"
+border = "${palette.error}50"
 
-"hidden" = "${palette.comment}"
-"hidden.background" = "${palette.comment}1a"
-"hidden.border" = "${palette.base_300}"
+[hidden]
+color = "${palette.comment}"
+background = "${palette.comment}1a"
+border = "${palette.base_300}"
 
-"hint" = "${palette.primary}"
-"hint.background" = "${palette.primary}1a"
-"hint.border" = "${palette.primary}50"
+[hint]
+color = "${palette.primary}"
+background = "${palette.primary}1a"
+border = "${palette.primary}50"
 
-"ignored" = "${palette.comment}"
-"ignored.background" = "${palette.comment}1a"
-"ignored.border" = "${palette.base_300}"
+[ignored]
+color = "${palette.comment}"
+background = "${palette.comment}1a"
+border = "${palette.base_300}"
 
-"info" = "${palette.info}"
-"info.background" = "${palette.info}1a"
-"info.border" = "${palette.info}50"
+[info]
+color = "${palette.info}"
+background = "${palette.info}1a"
+border = "${palette.info}50"
 
-"modified" = "${palette.warning}"
-"modified.background" = "${palette.warning}1a"
-"modified.border" = "${palette.warning}50"
+[modified]
+color = "${palette.warning}"
+background = "${palette.warning}1a"
+border = "${palette.warning}50"
 
-"predictive" = "${palette.comment}"
-"predictive.background" = "${palette.comment}1a"
-"predictive.border" = "${palette.base_300}"
+[predictive]
+color = "${palette.comment}"
+background = "${palette.comment}1a"
+border = "${palette.base_300}"
 
-"renamed" = "${palette.info}"
-"renamed.background" = "${palette.info}1a"
-"renamed.border" = "${palette.info}50"
+[renamed]
+color = "${palette.info}"
+background = "${palette.info}1a"
+border = "${palette.info}50"
 
-"success" = "${palette.success}"
-"success.background" = "${palette.success}1a"
-"success.border" = "${palette.success}50"
+[success]
+color = "${palette.success}"
+background = "${palette.success}1a"
+border = "${palette.success}50"
 
-"unreachable" = "${palette.comment}"
-"unreachable.background" = "${palette.comment}1a"
-"unreachable.border" = "${palette.base_300}"
+[unreachable]
+color = "${palette.comment}"
+background = "${palette.comment}1a"
+border = "${palette.base_300}"
 
-"warning" = "${palette.warning}"
-"warning.background" = "${palette.warning}1a"
-"warning.border" = "${palette.warning}50"
+[warning]
+color = "${palette.warning}"
+background = "${palette.warning}1a"
+border = "${palette.warning}50"

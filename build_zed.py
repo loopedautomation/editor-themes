@@ -83,9 +83,14 @@ def build_zed_theme_item(theme_path: Path):
     # Build style object
     style = {}
 
-    # First, add top-level properties (like background, text, icon, etc.)
-    # These are properties that aren't nested in sections
-    top_level_excludes = {"metadata", "palette", "import", "editor", "syntax"}
+    # First, handle [root] table - these properties go directly to root level
+    if "root" in resolved:
+        for key, value in resolved["root"].items():
+            zed_key = key.replace("-", "_")
+            style[zed_key] = value
+
+    # Then, add other top-level properties
+    top_level_excludes = {"metadata", "palette", "import", "editor", "syntax", "root"}
     for key, value in resolved.items():
         if key not in top_level_excludes and not isinstance(value, dict):
             # Top-level scalar properties go directly into style
@@ -103,7 +108,8 @@ def build_zed_theme_item(theme_path: Path):
         flat_editor = flatten_dict(resolved["editor"])
         for key, value in flat_editor.items():
             # Convert to Zed format (use snake_case)
-            zed_key = key.replace("-", "_")
+            # Preserve the editor. prefix
+            zed_key = f"editor.{key}".replace("-", "_")
             style[zed_key] = value
 
     # Add syntax colors
