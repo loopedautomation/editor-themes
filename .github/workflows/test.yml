@@ -1,0 +1,43 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  test:
+    name: Build & Test Themes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Build VS Code themes
+        run: |
+          uv run python build.py
+
+      - name: Build Zed themes
+        run: |
+          uv run python build_zed.py
+
+      - name: Verify theme files
+        run: |
+          echo "📋 Checking theme output files..."
+          ls -lh code/
+          ls -lh zed/themes/
+
+      - name: Run tests
+        run: |
+          uv run pytest tests/ -v --tb=short

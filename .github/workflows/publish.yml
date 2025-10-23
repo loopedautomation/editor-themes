@@ -19,8 +19,14 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Build themes
+      - name: Build VS Code themes
         run: uv run build.py
+
+      - name: Build Zed themes
+        run: uv run build_zed.py
+
+      - name: Run tests
+        run: uv run pytest
 
       - uses: actions/checkout@v3
       - name: Publish to Open VSX Registry

@@ -1,5 +1,7 @@
 # Looped Editor Themes
 
+[![Tests](https://github.com/loopedautomation/editor-themes/actions/workflows/test.yml/badge.svg)](https://github.com/loopedautomation/editor-themes/actions/workflows/test.yml)
+
 Looped Automation's editor themes for VS Code, Zed, Warp, and Oh My Posh are generated from a structured TOML template system. This repository contains the source templates, the build tooling, and the prebuilt themes.
 
 ## Prerequisites
