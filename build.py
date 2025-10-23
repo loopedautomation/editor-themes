@@ -62,6 +62,9 @@ def build_theme(theme_path: Path, output_dir: Path):
 
     context = {}
     for name, imp_path in theme.get("import", {}).items():
+        # Only process imports that DON'T start with "zed_" for VS Code themes
+        if name.startswith("zed_"):
+            continue
         imp_data = load_toml(Path(theme_path.parent) / Path(imp_path))
         context = deep_merge(context, imp_data)
 
