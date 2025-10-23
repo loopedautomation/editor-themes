@@ -1,0 +1,123 @@
+# Zed Syntax Colors Template
+[syntax.attribute]
+color = "${palette.attribute}"
+
+[syntax.boolean]
+color = "${palette.boolean}"
+
+[syntax.comment]
+color = "${palette.comment}"
+
+[syntax."comment.doc"]
+color = "${palette.comment}"
+
+[syntax.constant]
+color = "${palette.constant}"
+
+[syntax.constructor]
+color = "${palette.function_name}"
+
+[syntax.embedded]
+color = "${palette.base_content}"
+
+[syntax.emphasis]
+color = "${palette.base_content}"
+font_style = "italic"
+
+[syntax."emphasis.strong"]
+color = "${palette.base_content}"
+font_weight = 700
+
+[syntax.enum]
+color = "${palette.constant}"
+
+[syntax.function]
+color = "${palette.function_name}"
+
+[syntax.hint]
+color = "${palette.primary}"
+font_weight = 700
+
+[syntax.keyword]
+color = "${palette.keyword}"
+
+[syntax.label]
+color = "${palette.tag}"
+
+[syntax.link_text]
+color = "${palette.info}"
+font_style = "italic"
+
+[syntax.link_uri]
+color = "${palette.info}"
+
+[syntax.number]
+color = "${palette.number}"
+
+[syntax.operator]
+color = "${palette.operator}"
+
+[syntax.predictive]
+color = "${palette.comment}"
+font_style = "italic"
+
+[syntax.preproc]
+color = "${palette.keyword}"
+
+[syntax.primary]
+color = "${palette.primary}"
+
+[syntax.property]
+color = "${palette.attribute}"
+
+[syntax.punctuation]
+color = "${palette.base_content}"
+
+[syntax."punctuation.bracket"]
+color = "${palette.operator}"
+
+[syntax."punctuation.delimiter"]
+color = "${palette.base_content}"
+
+[syntax."punctuation.list_marker"]
+color = "${palette.base_content}"
+
+[syntax."punctuation.special"]
+color = "${palette.operator}"
+
+[syntax.string]
+color = "${palette.string}"
+
+[syntax."string.escape"]
+color = "${palette.number}"
+
+[syntax."string.regex"]
+color = "${palette.string}"
+
+[syntax."string.special"]
+color = "${palette.string}"
+
+[syntax."string.special.symbol"]
+color = "${palette.constant}"
+
+[syntax.tag]
+color = "${palette.tag}"
+
+[syntax."text.literal"]
+color = "${palette.string}"
+
+[syntax.title]
+color = "${palette.function_name}"
+font_weight = 700
+
+[syntax.type]
+color = "${palette.keyword}"
+
+[syntax.variable]
+color = "${palette.variable}"
+
+[syntax."variable.special"]
+color = "${palette.constant}"
+
+[syntax.variant]
+color = "${palette.constant}"

@@ -1,10 +1,9 @@
 [import]
-editor = "../templates/editor.toml"
-syntax = "../templates/syntax.toml"
+editor = "../../templates/zed/editor.toml"
+syntax = "../../templates/zed/syntax.toml"
 
 [metadata]
 name = "Looped Dark"
-semanticHighlighting = true
 type = "dark"
 
 [palette]

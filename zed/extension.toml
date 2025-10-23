@@ -1,0 +1,7 @@
+id = "looped-themes"
+name = "Looped"
+description = "Looped Automation's themes for Zed"
+version = "1.0.2"
+schema_version = 1
+authors = ["Ratul Maharaj <ratul@looped.sh>"]
+repository = "https://github.com/loopedautomation/editor-themes"

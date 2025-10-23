@@ -16,6 +16,7 @@ class RebuildHandler(FileSystemEventHandler):
             return
         if event.src_path.endswith(EXTENSIONS):
             subprocess.run(["python", "build.py"], check=False)
+            subprocess.run(["python", "build_zed.py"], check=False)
 
 
 if __name__ == "__main__":

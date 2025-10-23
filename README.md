@@ -1,6 +1,6 @@
 # Looped Editor Themes
 
-Looped Automation's VS Code themes are generated from a structured TOML template system. This repository contains the source templates, the build tooling, and the prebuilt JSON themes that ship with the extension.
+Looped Automation's editor themes for VS Code, Zed, Warp, and Oh My Posh are generated from a structured TOML template system. This repository contains the source templates, the build tooling, and the prebuilt themes.
 
 ## Prerequisites
 
@@ -35,10 +35,11 @@ The build script compiles the TOML templates in `src/themes/` into VS Code color
 Run a one-off build:
 
 ```bash
-uv run build.py
+uv run build.py        # Build VS Code themes
+uv run build_zed.py    # Build Zed themes
 ```
 
-Run the file watcher during active development (rebuilds whenever template files change):
+Run the file watcher during active development (rebuilds all themes whenever template files change):
 
 ```bash
 uv run watch.py
@@ -59,11 +60,44 @@ The debugger automatically reloads whenever the generated theme JSON files chang
 - `src/templates/` reusable color definitions and shared utilities
 - `src/themes/` top-level theme descriptors that import templates and overrides
 - `themes/` generated VS Code themes consumed by the extension
-- `build.py` template compiler invoked by the watcher or directly
-- `watch.py` filesystem watcher that rebuilds themes on change
+- `zed/` Zed editor extension and generated themes
+- `warp/` Warp terminal themes
+- `oh-my-posh/` Oh My Posh prompt themes
+- `build.py` VS Code template compiler invoked by the watcher or directly
+- `build_zed.py` Zed template compiler
+- `watch.py` filesystem watcher that rebuilds all themes on change
 - `package.json` VS Code extension manifest referencing generated themes
 
-# Warp Themes
+## Zed Themes
+
+Looped themes are available for the [Zed editor](https://zed.dev/).
+
+### Building Zed Themes
+
+```bash
+uv run build_zed.py
+```
+
+The generated themes will be in `zed/themes/`.
+
+### Installing in Zed
+
+For manual installation during development:
+
+```bash
+# macOS/Linux
+mkdir -p ~/.config/zed/extensions
+ln -s "$(pwd)/zed" ~/.config/zed/extensions/looped
+
+# Windows (PowerShell, run as Administrator)
+New-Item -ItemType SymbolicLink -Path "$env:APPDATA\Zed\extensions\looped" -Target "$(Get-Location)\zed"
+```
+
+Then restart Zed and select **Looped Dark** or **Looped Light** from the theme selector.
+
+See [zed/README.md](zed/README.md) for detailed installation and usage instructions.
+
+## Warp Themes
 
 - The terminal presets sit under `warp/looped-dark.yaml` and `warp/looped-light.yaml`.
 - Run `./warp/install.sh` to copy every YAML file in the folder into `~/.warp/themes/`.

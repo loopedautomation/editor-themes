@@ -2,7 +2,7 @@
   "name": "looped-themes",
   "publisher": "LoopedAutomation",
   "displayName": "Looped Themes",
-  "description": "Looped Automation editor themes - Dark and Light variants",
+  "description": "Looped Automation's themes for VS Code",
   "version": "1.0.2",
   "icon": "looped.png",
   "engines": {
@@ -25,12 +25,12 @@
       {
         "label": "Looped Dark",
         "uiTheme": "vs-dark",
-        "path": "./themes/looped-dark.json"
+        "path": "./code/looped-dark.json"
       },
       {
         "label": "Looped Light",
         "uiTheme": "vs",
-        "path": "./themes/looped-light.json"
+        "path": "./code/looped-light.json"
       }
     ]
   }

@@ -3,6 +3,7 @@ import json
 import re
 from pathlib import Path
 
+
 def load_toml(path: Path):
     with open(path, "rb") as f:
         return tomllib.load(f)
@@ -77,10 +78,14 @@ def build_theme(theme_path: Path, output_dir: Path):
     metadata_type = resolved.get("metadata", {}).get("type")
 
     if not metadata_name:
-        raise KeyError("The 'metadata.name' key is missing in the theme data. Please ensure it is defined in the theme file.")
+        raise KeyError(
+            "The 'metadata.name' key is missing in the theme data. Please ensure it is defined in the theme file."
+        )
 
     if not metadata_type:
-        raise KeyError("The 'metadata.type' key is missing in the theme data. Please ensure it is defined in the theme file.")
+        raise KeyError(
+            "The 'metadata.type' key is missing in the theme data. Please ensure it is defined in the theme file."
+        )
 
     # Process syntax tables to build token_colors with relative scope convention
     token_colors = []
@@ -106,10 +111,10 @@ def build_theme(theme_path: Path, output_dir: Path):
         for raw in scopes:
             if not raw:
                 continue
-            if raw.startswith('.'):
+            if raw.startswith("."):
                 frag = raw[1:]
                 normalized.append(f"{current_prefix}.{frag}")
-            elif '.' not in raw and raw != current_prefix:
+            elif "." not in raw and raw != current_prefix:
                 normalized.append(f"{current_prefix}.{raw}")
             else:
                 normalized.append(raw)
@@ -128,7 +133,10 @@ def build_theme(theme_path: Path, output_dir: Path):
         # Accept both 'scope' and 'scopes' (authoring convenience); normalize later
         name_prop = table_data.get("name")
         has_name_attr = isinstance(name_prop, str)
-        has_syntax_properties = (any(k in table_data for k in ["color", "style", "scope", "scopes"]) or has_name_attr) and not is_group
+        has_syntax_properties = (
+            any(k in table_data for k in ["color", "style", "scope", "scopes"])
+            or has_name_attr
+        ) and not is_group
         if has_syntax_properties:
             scope_key = None
             if "scope" in table_data:
@@ -149,7 +157,9 @@ def build_theme(theme_path: Path, output_dir: Path):
                 if isinstance(s, str) and "," in s:
                     parts = [p.strip() for p in s.split(",") if p.strip()]
                     if len(parts) > 1:
-                        print(f"⚠️  Splitting comma-delimited scope entry into multiple scopes: {s} -> {parts}")
+                        print(
+                            f"⚠️  Splitting comma-delimited scope entry into multiple scopes: {s} -> {parts}"
+                        )
                     split_scopes.extend(parts)
                 else:
                     split_scopes.append(s)
@@ -160,7 +170,9 @@ def build_theme(theme_path: Path, output_dir: Path):
             if has_name_attr:
                 token_color["name"] = name_prop
             elif "name" in table_data and not isinstance(name_prop, str):
-                print(f"⚠️  Ignoring non-string 'name' field at {current_prefix}; treat as nested scope container.")
+                print(
+                    f"⚠️  Ignoring non-string 'name' field at {current_prefix}; treat as nested scope container."
+                )
             token_color["scope"] = updated_scopes
             settings = {}
             col = table_data.get("color")
@@ -172,17 +184,23 @@ def build_theme(theme_path: Path, output_dir: Path):
             token_color["settings"] = settings
             # Build a stable, hashable signature using JSON to avoid unhashable nested values
             try:
-                sig = json.dumps({
-                    "name": token_color.get("name"),
-                    "scope": token_color.get("scope"),
-                    "settings": token_color.get("settings")
-                }, sort_keys=True)
+                sig = json.dumps(
+                    {
+                        "name": token_color.get("name"),
+                        "scope": token_color.get("scope"),
+                        "settings": token_color.get("settings"),
+                    },
+                    sort_keys=True,
+                )
             except TypeError:
                 # Fallback: coerce any problematic objects to string
                 coerced = {
                     "name": token_color.get("name"),
                     "scope": [str(s) for s in token_color.get("scope", [])],
-                    "settings": {k: (v if isinstance(v, (str, int, float, bool)) else str(v)) for k, v in token_color.get("settings", {}).items()}
+                    "settings": {
+                        k: (v if isinstance(v, (str, int, float, bool)) else str(v))
+                        for k, v in token_color.get("settings", {}).items()
+                    },
                 }
                 sig = json.dumps(coerced, sort_keys=True)
                 token_color = coerced
@@ -191,11 +209,23 @@ def build_theme(theme_path: Path, output_dir: Path):
                 token_colors.append(token_color)
         for key, value in table_data.items():
             # Recurse into any dict child that is not one of the primitive style attributes
-            if isinstance(value, dict) and key not in ["scope", "scopes", "color", "style", "group"]:
+            if isinstance(value, dict) and key not in [
+                "scope",
+                "scopes",
+                "color",
+                "style",
+                "group",
+            ]:
                 process_syntax_table(key, value, current_prefix)
 
     for key, value in resolved.items():
-        if isinstance(value, dict) and key not in ["editor", "metadata", "palette", "import", "overrides"]:
+        if isinstance(value, dict) and key not in [
+            "editor",
+            "metadata",
+            "palette",
+            "import",
+            "overrides",
+        ]:
             process_syntax_table(key, value)
 
     def sort_key(token):
@@ -216,6 +246,7 @@ def build_theme(theme_path: Path, output_dir: Path):
             settings_obj = {"_value": settings_obj}
         settings_str = json.dumps(settings_obj, sort_keys=True)
         return (name, scope_join, settings_str)
+
     token_colors.sort(key=sort_key)
 
     # Flatten editor colors properly from nested editor dict
@@ -231,15 +262,15 @@ def build_theme(theme_path: Path, output_dir: Path):
         "$schema": "vscode://schemas/color-theme",
         "name": metadata_name,
         "type": metadata_type,
-        "semanticHighlighting": resolved.get("metadata", {}).get("semanticHighlighting", True),
+        "semanticHighlighting": resolved.get("metadata", {}).get(
+            "semanticHighlighting", True
+        ),
         "colors": editor_colors,
         "tokenColors": token_colors,
     }
 
     output_dir.mkdir(exist_ok=True)
-    out_path = (
-        output_dir / f"{metadata_name.lower().replace(' ', '-')}.json"
-    )
+    out_path = output_dir / f"{metadata_name.lower().replace(' ', '-')}.json"
     with open(out_path, "w") as f:
         json.dump(vscode_theme, f, indent=2)
 
@@ -247,7 +278,7 @@ def build_theme(theme_path: Path, output_dir: Path):
 
 
 if __name__ == "__main__":
-    themes_dir = Path("src/themes")
-    output_dir = Path("themes")
+    themes_dir = Path("src/themes/code")
+    output_dir = Path("code")
     for theme_file in themes_dir.glob("*.toml"):
         build_theme(theme_file, output_dir)

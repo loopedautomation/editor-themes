@@ -1,0 +1,90 @@
+# Zed Editor UI Colors
+[editor]
+background = "${palette.base_100}"
+foreground = "${palette.base_content}"
+
+[editor.gutter]
+background = "${palette.base_100}"
+
+[editor.active_line]
+background = "${palette.base_200}"
+
+[editor.line_number]
+color = "${palette.base_300}"
+
+[editor.active_line_number]
+color = "${palette.primary}"
+
+[editor.cursor]
+color = "${palette.base_content}"
+
+# Panels and UI Elements
+[panel]
+background = "${palette.base_100}"
+focused_border = "${palette.primary}"
+
+[toolbar]
+background = "${palette.base_100}"
+
+[title_bar]
+background = "${palette.base_100}"
+
+[tab_bar]
+background = "${palette.base_100}"
+
+[tab]
+active_background = "${palette.base_200}"
+inactive_background = "${palette.base_100}"
+
+[status_bar]
+background = "${palette.base_100}"
+
+# Git Integration
+[git]
+modified = "${palette.info}"
+conflict = "${palette.error}"
+renamed = "${palette.warning}"
+created = "${palette.success}"
+deleted = "${palette.error}"
+ignored = "${palette.neutral}50"
+
+# Diagnostics
+[error]
+background = "${palette.error}"
+foreground = "${palette.base_content}"
+
+[warning]
+background = "${palette.warning}"
+foreground = "${palette.base_content}"
+
+[info]
+background = "${palette.info}"
+foreground = "${palette.base_content}"
+
+[hint]
+background = "${palette.base_200}"
+foreground = "${palette.base_content}"
+
+# Search
+[search]
+match_background = "${palette.warning}40"
+
+# Terminal
+[terminal]
+background = "${palette.base_100}"
+foreground = "${palette.base_content}"
+
+# Scrollbar
+[scrollbar]
+thumb_background = "${palette.base_300}80"
+thumb_hover_background = "${palette.base_300}"
+thumb_border = "${palette.base_300}"
+
+# Border
+[border]
+color = "${palette.base_300}"
+focused = "${palette.primary}"
+
+# Predictive text
+[predictive]
+background = "${palette.base_200}"

@@ -1,6 +1,6 @@
 [import]
-editor = "../templates/editor.toml"
-syntax = "../templates/syntax.toml"
+editor = "../../templates/code/editor.toml"
+syntax = "../../templates/code/syntax.toml"
 
 [metadata]
 name = "Looped Light"
