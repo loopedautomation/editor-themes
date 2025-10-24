@@ -26,13 +26,31 @@ jobs:
       - name: Build Zed themes
         run: uv run build_zed.py
 
-      - name: Checkout target repository
-        uses: actions/checkout@v3
-        with:
-          repository: loopedautomation/zed-theme
-          token: ${{ secrets.ZED_THEME_PAT }}
-          path: zed-theme
-          fetch-depth: 0
+      - name: Checkout target repository (robust for empty repos)
+        run: |
+          set -euo pipefail
+
+          # Create directory and init git
+          mkdir -p zed-repo
+          cd zed-repo
+          git init
+
+          # Add remote using PAT for authentication
+          git remote add origin https://x-access-token:${{ secrets.ZED_THEME_PAT }}@github.com/loopedautomation/zed-theme.git
+
+          # If the remote has a main branch, fetch and check it out.
+          # If it doesn't (empty repo), create an initial empty main branch and push it.
+          if git ls-remote --exit-code --heads origin main; then
+            git fetch origin main
+            # Create or reset local main to remote main
+            git checkout --progress -B main FETCH_HEAD
+          else
+            # Create an orphan main branch and push an initial empty commit so subsequent pushes succeed
+            git checkout --orphan main
+            git rm -rf . || true
+            git commit --allow-empty -m "Initial empty commit"
+            git push origin main
+          fi
 
       - name: Sync zed/ into target repo and push
         run: |
