@@ -1,13 +1,19 @@
-name: Publish Zed themes to zed-theme repo
+name: Mirror Zed themes to zed-theme repo
 
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
-  publish-zed:
+  mirror-zed:
     runs-on: ubuntu-latest
+    concurrency:
+      group: publish-zed
+      cancel-in-progress: true
     steps:
       - name: Checkout source repository
         uses: actions/checkout@v3
@@ -26,65 +32,52 @@ jobs:
       - name: Build Zed themes
         run: uv run build_zed.py
 
-      - name: Checkout target repository (robust for empty repos)
+      - name: Mirror zed/ to loopedautomation/zed-theme (force push)
+        env:
+          TARGET_REPO: loopedautomation/zed-theme
+          TOKEN: ${{ secrets.ZED_THEME_PAT }}
         run: |
           set -euo pipefail
 
-          # Create directory and init git
-          mkdir -p zed-repo
-          cd zed-repo
-          git init
-
-          # Add remote using PAT for authentication
-          git remote add origin https://x-access-token:${{ secrets.ZED_THEME_PAT }}@github.com/loopedautomation/zed-theme.git
-
-          # If the remote has a main branch, fetch and check it out.
-          # If it doesn't (empty repo), create an initial empty main branch and push it.
-          if git ls-remote --exit-code --heads origin main; then
-            git fetch origin main
-            # Create or reset local main to remote main
-            git checkout --progress -B main FETCH_HEAD
-          else
-            # Create an orphan main branch and push an initial empty commit so subsequent pushes succeed
-            git checkout --orphan main
-            # Configure commit author so the initial commit doesn't fail
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            # Ensure working tree and index are clean
-            git reset --hard || true
-            git commit --allow-empty -m "Initial empty commit"
-            git push origin main
-          fi
-
-      - name: Sync zed/ into target repo and push
-        run: |
-          set -euo pipefail
-
-          # Ensure zed directory exists
-          if [ ! -d "zed" ]; then
-            echo "No zed/ directory found; aborting"
+          if [ -z "${TOKEN:-}" ]; then
+            echo "Missing ZED_THEME_PAT secret"
             exit 1
           fi
 
-          # Copy and overwrite target repo with current zed/ contents
-          rsync -a --delete zed/ zed-theme/
+          if [ ! -d "zed" ]; then
+            echo "No zed/ directory present. Aborting."
+            exit 1
+          fi
 
-          cd zed-theme
+          echo "Preparing temporary repo..."
+          TMP=zed-repo
+          rm -rf "$TMP"
+          mkdir -p "$TMP"
+          cd "$TMP"
 
-          # Configure commit author
+          # Initialize repo and add remote authenticated with PAT
+          git init
+          git remote add origin "https://x-access-token:${TOKEN}@github.com/${TARGET_REPO}.git"
+
+          # Ensure we're on main branch locally
+          git checkout -B main
+
+          # Remove any files (should be empty repo, but safe to clean)
+          git rm -rf . || true
+
+          echo "Copying built zed/ contents into repo root..."
+          rsync -a --delete ../zed/ ./
+
+          echo "Configuring committer identity..."
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Stage changes
+          echo "Staging files..."
           git add -A
 
-          # Exit if there are no changes
-          if git diff --staged --quiet; then
-            echo "No changes to publish"
-            exit 0
-          fi
+          echo "Committing..."
+          git commit --allow-empty -m "Mirror zed/ from editor-themes@${{ github.sha }}"
 
-          git commit -m "Publish zed themes from editor-themes@${{ github.sha }}"
-
-          # Push to main on the target repo
-          git push origin HEAD:main
+          echo "Force-pushing to ${TARGET_REPO}:main"
+          # Force update the remote main branch to match the contents of zed/
+          git push origin main --force
