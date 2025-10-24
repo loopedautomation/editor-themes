@@ -47,7 +47,11 @@ jobs:
           else
             # Create an orphan main branch and push an initial empty commit so subsequent pushes succeed
             git checkout --orphan main
-            git rm -rf . || true
+            # Configure commit author so the initial commit doesn't fail
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            # Ensure working tree and index are clean
+            git reset --hard || true
             git commit --allow-empty -m "Initial empty commit"
             git push origin main
           fi
