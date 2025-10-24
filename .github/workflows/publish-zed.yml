@@ -76,10 +76,8 @@ jobs:
           fi
 
           echo "Source root: $SRC_ROOT"
-          rsync -a --delete "$SRC_ROOT/zed/" ./
-
-          # Remove any accidental .git from copied files
-          rm -rf .git || true
+          # Use --filter to protect .git from deletion while still allowing --delete to work
+          rsync -a --delete --filter='P .git' "$SRC_ROOT/zed/" ./
 
           echo "Configuring committer identity..."
           git config user.name "github-actions[bot]"
