@@ -97,11 +97,20 @@ def build_zed_theme_item(theme_path: Path):
             zed_key = key.replace("-", "_")
             style[zed_key] = value
         elif key not in top_level_excludes and isinstance(value, dict):
-            # Top-level dict properties (like [border], [text], [icon]) get flattened
-            flat_top = flatten_dict({key: value})
-            for nested_key, nested_value in flat_top.items():
-                zed_key = nested_key.replace("-", "_")
-                style[zed_key] = nested_value
+            # Check if this dict has a 'root' key for special handling
+            if "root" in value:
+                # The 'root' property becomes the base property
+                style[key] = value["root"]
+                # All other properties get the dot notation
+                for prop_key, prop_value in value.items():
+                    if prop_key != "root":
+                        style[f"{key}.{prop_key}"] = prop_value
+            else:
+                # Top-level dict properties (like [border], [text], [icon]) get flattened
+                flat_top = flatten_dict({key: value})
+                for nested_key, nested_value in flat_top.items():
+                    zed_key = nested_key.replace("-", "_")
+                    style[zed_key] = nested_value
 
     # Then, flatten editor colors (these can override top-level if needed)
     if "editor" in resolved:

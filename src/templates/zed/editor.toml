@@ -175,71 +175,71 @@ deleted = "${palette.error}"
 
 # Status Indicators
 [conflict]
-color = "${palette.warning}"
+root = "${palette.warning}"
 background = "${palette.warning}1a"
 border = "${palette.warning}50"
 
 [created]
-color = "${palette.success}"
+root = "${palette.success}"
 background = "${palette.success}1a"
 border = "${palette.success}50"
 
 [deleted]
-color = "${palette.error}"
+root = "${palette.error}"
 background = "${palette.error}1a"
 border = "${palette.error}50"
 
 [error]
-color = "${palette.error}"
+root = "${palette.error}"
 background = "${palette.error}1a"
 border = "${palette.error}50"
 
 [hidden]
-color = "${palette.comment}"
+root = "${palette.comment}"
 background = "${palette.comment}1a"
 border = "${palette.base_300}"
 
 [hint]
-color = "${palette.primary}"
+root = "${palette.primary}"
 background = "${palette.primary}1a"
 border = "${palette.primary}50"
 
 [ignored]
-color = "${palette.comment}"
+root = "${palette.comment}85"
 background = "${palette.comment}1a"
 border = "${palette.base_300}"
 
 [info]
-color = "${palette.info}"
+root = "${palette.info}"
 background = "${palette.info}1a"
 border = "${palette.info}50"
 
 [modified]
-color = "${palette.warning}"
+root = "${palette.warning}"
 background = "${palette.warning}1a"
 border = "${palette.warning}50"
 
 [predictive]
-color = "${palette.comment}"
+root = "${palette.comment}"
 background = "${palette.comment}1a"
 border = "${palette.base_300}"
 
 [renamed]
-color = "${palette.info}"
+root = "${palette.info}"
 background = "${palette.info}1a"
 border = "${palette.info}50"
 
 [success]
-color = "${palette.success}"
+root = "${palette.success}"
 background = "${palette.success}1a"
 border = "${palette.success}50"
 
 [unreachable]
-color = "${palette.comment}"
+root = "${palette.comment}"
 background = "${palette.comment}1a"
 border = "${palette.base_300}"
 
 [warning]
-color = "${palette.warning}"
+root = "${palette.warning}"
 background = "${palette.warning}1a"
 border = "${palette.warning}50"
