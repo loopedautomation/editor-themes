@@ -1,100 +1,37 @@
 # Looped Themes for Zed
 
+> **Note:** This repository is automatically mirrored from [loopedautomation/editor-themes](https://github.com/loopedautomation/editor-themes). All changes should be made in the main repository.
+
 Looped Automation's themes for the [Zed editor](https://zed.dev/).
 
 ## Installation
 
-### Option 1: Install from Zed Extensions (Coming Soon)
-
-Once published to the Zed extensions registry, you'll be able to install directly from Zed:
+### From Zed Extensions (Coming Soon)
 
 1. Open Zed
 2. Press `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Linux/Windows)
-3. Type "extensions"
+3. Type "extensions" and select "zed: extensions"
 4. Search for "Looped"
 5. Click Install
 
-### Option 2: Manual Installation (Development)
+### Manual Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/loopedautomation/editor-themes.git
-   cd editor-themes
-   ```
-
-2. Build the themes:
-   ```bash
-   uv sync
-   uv run build_zed.py
-   ```
-
-3. Open the Zed extensions page (Cmd + Shift + X) and click `Install Dev Extension`
-
-4. Select the zed folder
-
-## Usage
-
-1. Open Zed's command palette (`Cmd+Shift+P` on macOS, `Ctrl+Shift+P` on Linux/Windows)
-2. Type "theme"
-3. Select "Theme Selector: Toggle"
-4. Choose either:
-   - **Looped Dark** - A dark theme with vibrant purple accents
-   - **Looped Light** - A clean light theme with the same purple accent colors
+1. Clone this repository
+2. Open Zed's extensions directory
+3. Click "Install Dev Extension"
+4. Select this folder
 
 ## Available Themes
 
-### Looped Dark
-A modern dark theme featuring:
-- Deep dark backgrounds (`#0A0B10`, `#14161B`)
-- Vibrant purple primary color (`#685EF6`)
-- Carefully selected syntax colors for optimal readability
-- Subtle UI elements that don't distract from your code
+- **Looped Dark** - Dark theme with vibrant purple accents
+- **Looped Light** - Clean light theme with purple accents
 
-### Looped Light
-A crisp light theme featuring:
-- Clean white backgrounds with subtle grays
-- Same vibrant purple accents for consistency
-- High contrast syntax colors optimized for light backgrounds
-- Professional appearance for daytime coding
+Switch themes via the command palette (`Cmd+Shift+P`) → "Theme Selector: Toggle"
 
-## Color Palette
+## Contributing
 
-Both themes use a consistent color palette:
-
-| Color     | Dark Theme | Light Theme | Usage                    |
-|-----------|------------|-------------|--------------------------|
-| Primary   | `#685EF6`  | `#685EF6`   | Keywords, selections     |
-| Secondary | `#8B8DFF`  | `#8B8DFF`   | Strings, constants       |
-| Success   | `#389469`  | `#2D7A54`   | Git additions, success   |
-| Error     | `#D02E1E`  | `#D02E1E`   | Errors, deletions        |
-| Warning   | `#EE9A00`  | `#E68A00`   | Warnings, modifications  |
-| Info      | `#8B8DFF`  | `#5B7FFF`   | Info, links              |
-
-## Development
-
-The Zed themes are generated from TOML templates in the `src/themes/zed/` directory.
-
-To modify the themes:
-
-1. Edit the TOML files in `src/themes/zed/` or `src/templates/zed/`
-2. Run the build script:
-   ```bash
-   uv run build_zed.py
-   ```
-3. The generated themes will be in `zed/themes/`
-4. Reload Zed to see your changes
-
-For active development, use the watch script:
-```bash
-uv run watch.py
-```
-
-This will automatically rebuild both VS Code and Zed themes when you save changes.
+This repository is auto-generated. To contribute or report issues, please visit the main repository at [loopedautomation/editor-themes](https://github.com/loopedautomation/editor-themes).
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
-
-## Feedback
-
-Found a bug or have a suggestion? Please [open an issue](https://github.com/loopedautomation/editor-themes/issues) on GitHub.
+MIT License - See [LICENSE](https://github.com/loopedautomation/editor-themes/blob/main/LICENSE)
