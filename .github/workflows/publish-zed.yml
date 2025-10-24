@@ -1,0 +1,68 @@
+name: Publish Zed themes to zed-theme repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-zed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Build Zed themes
+        run: uv run build_zed.py
+
+      - name: Checkout target repository
+        uses: actions/checkout@v3
+        with:
+          repository: loopedautomation/zed-theme
+          token: ${{ secrets.ZED_THEME_PAT }}
+          path: zed-repo
+          fetch-depth: 0
+
+      - name: Sync zed/ into target repo and push
+        run: |
+          set -euo pipefail
+
+          # Ensure zed directory exists
+          if [ ! -d "zed" ]; then
+            echo "No zed/ directory found; aborting"
+            exit 1
+          fi
+
+          # Copy and overwrite target repo with current zed/ contents
+          rsync -a --delete zed/ zed-repo/
+
+          cd zed-repo
+
+          # Configure commit author
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stage changes
+          git add -A
+
+          # Exit if there are no changes
+          if git diff --staged --quiet; then
+            echo "No changes to publish"
+            exit 0
+          fi
+
+          git commit -m "Publish zed themes from editor-themes@${{ github.sha }}"
+
+          # Push to main on the target repo
+          git push origin HEAD:main
