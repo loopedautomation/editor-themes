@@ -1,6 +1,6 @@
 [project]
 name = "editor-themes"
-version = "1.0.3"
+version = "1.0.4"
 description = "Looped Automation Editor Themes"
 readme = "README.md"
 requires-python = ">=3.13"
