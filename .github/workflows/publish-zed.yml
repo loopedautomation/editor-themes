@@ -33,7 +33,7 @@ jobs:
       - name: Build Zed themes
         run: uv run build_zed.py
 
-      - name: Mirror zed/ to loopedautomation/zed-theme (force push)
+      - name: Mirror zed/ to loopedautomation/zed-theme
         env:
           TARGET_REPO: loopedautomation/zed-theme
           TOKEN: ${{ secrets.ZED_THEME_PAT }}
@@ -50,49 +50,31 @@ jobs:
             exit 1
           fi
 
-          echo "Preparing temporary repo (outside workspace)..."
+          # Clone the target repository
+          echo "Cloning ${TARGET_REPO}..."
           TMP_DIR=$(mktemp -d)
-          echo "Using temp dir: $TMP_DIR"
-          # Ensure we operate outside the repository workspace to avoid accidental pushes to this repo
+          git clone "https://x-access-token:${TOKEN}@github.com/${TARGET_REPO}.git" "$TMP_DIR"
           cd "$TMP_DIR"
 
-          # Initialize repo and add remote authenticated with PAT
-          git init
-          git remote add origin "https://x-access-token:${TOKEN}@github.com/${TARGET_REPO}.git"
-
-          # Ensure branch 'main' exists locally
-          git checkout -B main
-
-          # Clean any pre-existing files except .git
-          find . -mindepth 1 -maxdepth 1 -not -name .git -exec rm -rf {} + || true
-
-          echo "Copying built zed/ contents into repo root from workspace..."
-          # Use GITHUB_WORKSPACE to reference the checked-out source repository workspace
-          if [ -z "${GITHUB_WORKSPACE:-}" ]; then
-            # Fallback: assume parent directory contains checked-out repo
-            SRC_ROOT="$(pwd)/../editor-themes"
-          else
-            SRC_ROOT="$GITHUB_WORKSPACE"
-          fi
-
-          echo "Source root: $SRC_ROOT"
-          # Use --filter to protect .git from deletion while still allowing --delete to work
-          rsync -a --delete --filter='P .git' "$SRC_ROOT/zed/" ./
-
-          echo "Configuring committer identity..."
+          # Configure git
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          echo "Staging files..."
-          git add -A
+          # Copy files from zed/ to the cloned repo
+          echo "Copying zed/ contents..."
+          cp -r "${GITHUB_WORKSPACE}/zed/"* .
 
-          echo "Committing..."
-          git commit --allow-empty -m "Mirror zed/ from editor-themes@${{ github.sha }}"
+          # Check if there are any changes
+          if git status --porcelain | grep -q .; then
+            echo "Changes detected, committing..."
+            git add .
+            git commit -m "Mirror zed/ from editor-themes@${{ github.sha }}"
+            echo "Pushing to ${TARGET_REPO}..."
+            git push origin main
+          else
+            echo "No changes detected. Skipping commit and push."
+          fi
 
-          echo "Force-pushing to ${TARGET_REPO}:main"
-          # Force update the remote main branch to match the contents of zed/
-          git push origin main --force
-
-          # Cleanup temp dir
+          # Cleanup
           cd /
-          rm -rf "$TMP_DIR" || true
+          rm -rf "$TMP_DIR"
