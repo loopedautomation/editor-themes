@@ -31,7 +31,7 @@ jobs:
         with:
           repository: loopedautomation/zed-theme
           token: ${{ secrets.ZED_THEME_PAT }}
-          path: zed-repo
+          path: zed-theme
           fetch-depth: 0
 
       - name: Sync zed/ into target repo and push
@@ -45,9 +45,9 @@ jobs:
           fi
 
           # Copy and overwrite target repo with current zed/ contents
-          rsync -a --delete zed/ zed-repo/
+          rsync -a --delete zed/ zed-theme/
 
-          cd zed-repo
+          cd zed-theme
 
           # Configure commit author
           git config user.name "github-actions[bot]"
