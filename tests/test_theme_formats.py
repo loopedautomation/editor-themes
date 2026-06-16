@@ -3,6 +3,7 @@ Tests to ensure theme output formats are correct.
 """
 
 import json
+import tomllib
 from pathlib import Path
 
 import pytest
@@ -13,6 +14,14 @@ PROJECT_ROOT = Path(__file__).parent.parent
 ZED_THEME_PATH = PROJECT_ROOT / "zed" / "themes" / "looped.json"
 CODE_DARK_THEME_PATH = PROJECT_ROOT / "code" / "looped-dark.json"
 CODE_LIGHT_THEME_PATH = PROJECT_ROOT / "code" / "looped-light.json"
+HERDR_DARK_THEME_PATH = PROJECT_ROOT / "herdr" / "looped-dark.toml"
+HERDR_LIGHT_THEME_PATH = PROJECT_ROOT / "herdr" / "looped-light.toml"
+
+# Herdr only supports these six [theme.custom] override fields.
+HERDR_CUSTOM_FIELDS = ["panel_bg", "accent", "green", "blue", "red", "yellow"]
+
+GHOSTTY_DARK_THEME_PATH = PROJECT_ROOT / "ghostty" / "themes" / "looped-dark"
+GHOSTTY_LIGHT_THEME_PATH = PROJECT_ROOT / "ghostty" / "themes" / "looped-light"
 
 
 class TestZedThemeFormat:
@@ -232,6 +241,79 @@ class TestVSCodeThemeFormat:
                 check_value(token["settings"]["foreground"])
             if "background" in token["settings"]:
                 check_value(token["settings"]["background"])
+
+
+class TestHerdrThemeFormat:
+    """Tests for Herdr theme snippet format validation."""
+
+    @pytest.fixture(params=[HERDR_DARK_THEME_PATH, HERDR_LIGHT_THEME_PATH])
+    def herdr_theme(self, request):
+        """Load each Herdr theme snippet as parsed TOML."""
+        with open(request.param, "rb") as f:
+            return tomllib.load(f)
+
+    def test_herdr_theme_files_exist(self):
+        """Verify Herdr theme snippets exist."""
+        assert HERDR_DARK_THEME_PATH.exists(), "Herdr dark snippet not found"
+        assert HERDR_LIGHT_THEME_PATH.exists(), "Herdr light snippet not found"
+
+    def test_herdr_theme_structure(self, herdr_theme):
+        """Verify the [theme] and [theme.custom] structure."""
+        assert "theme" in herdr_theme, "Missing [theme] table"
+        assert "name" in herdr_theme["theme"], "Missing theme.name (base theme)"
+        assert "custom" in herdr_theme["theme"], "Missing [theme.custom] table"
+
+    def test_herdr_custom_fields(self, herdr_theme):
+        """Verify all six supported custom fields are present and hex-valued."""
+        custom = herdr_theme["theme"]["custom"]
+        for field in HERDR_CUSTOM_FIELDS:
+            assert field in custom, f"Missing custom field: {field}"
+            value = custom[field]
+            assert value.startswith("#"), f"Field {field} should be hex: {value}"
+            assert len(value) in [4, 7, 9], f"Invalid hex length for {field}: {value}"
+
+
+class TestGhosttyThemeFormat:
+    """Tests for Ghostty theme file format validation."""
+
+    @pytest.fixture(params=[GHOSTTY_DARK_THEME_PATH, GHOSTTY_LIGHT_THEME_PATH])
+    def ghostty_theme(self, request):
+        """Parse a Ghostty theme file into key/value and palette entries."""
+        settings = {}
+        palette = {}
+        for line in request.param.read_text().splitlines():
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            key, _, value = line.partition("=")
+            key, value = key.strip(), value.strip()
+            if key == "palette":
+                idx, _, color = value.partition("=")
+                palette[int(idx)] = color
+            else:
+                settings[key] = value
+        return {"settings": settings, "palette": palette}
+
+    def test_ghostty_theme_files_exist(self):
+        """Verify Ghostty theme files exist."""
+        assert GHOSTTY_DARK_THEME_PATH.exists(), "Ghostty dark theme not found"
+        assert GHOSTTY_LIGHT_THEME_PATH.exists(), "Ghostty light theme not found"
+
+    def test_ghostty_core_settings(self, ghostty_theme):
+        """Verify background/foreground are present and hex-valued."""
+        settings = ghostty_theme["settings"]
+        for key in ["background", "foreground"]:
+            assert key in settings, f"Missing {key}"
+            assert settings[key].startswith("#"), f"{key} should be hex: {settings[key]}"
+
+    def test_ghostty_full_palette(self, ghostty_theme):
+        """Verify all 16 ANSI palette entries are present and hex-valued."""
+        palette = ghostty_theme["palette"]
+        for i in range(16):
+            assert i in palette, f"Missing palette index {i}"
+            color = palette[i]
+            assert color.startswith("#"), f"palette {i} should be hex: {color}"
+            assert len(color) in [4, 7, 9], f"Invalid hex length at palette {i}: {color}"
 
 
 class TestThemeConsistency:

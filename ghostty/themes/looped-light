@@ -1,0 +1,21 @@
+# looped-light — generated from warp/looped-light.yaml. Do not edit by hand.
+background = #FFFFFF
+foreground = #030306
+cursor-color = #685EF6
+selection-background = #685EF6
+palette = 0=#DEDEDE
+palette = 1=#D02E1E
+palette = 2=#389469
+palette = 3=#EE9A00
+palette = 4=#8B8DFF
+palette = 5=#685EF6
+palette = 6=#5f97f0
+palette = 7=#030306
+palette = 8=#a5a5a5
+palette = 9=#cc2e3b
+palette = 10=#389469
+palette = 11=#EE9A00
+palette = 12=#8B8DFF
+palette = 13=#7E5DE9
+palette = 14=#5f97f0
+palette = 15=#15161B

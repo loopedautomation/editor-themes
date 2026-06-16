@@ -7,8 +7,8 @@ from watchdog.events import FileSystemEventHandler
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 
-WATCH_DIRS = ["src"]
-EXTENSIONS = (".toml", ".py")
+WATCH_DIRS = ["src", "warp"]
+EXTENSIONS = (".toml", ".py", ".yaml")
 # Enable test running with --test flag
 RUN_TESTS = "--test" in sys.argv
 
@@ -26,6 +26,8 @@ class RebuildHandler(FileSystemEventHandler):
         # Determine which build scripts to run based on file location
         build_vscode = False
         build_zed = False
+        build_herdr = False
+        build_ghostty = False
 
         # Check if the change is in a template directory
         if "templates/code" in event.src_path or "templates\\code" in event.src_path:
@@ -35,10 +37,12 @@ class RebuildHandler(FileSystemEventHandler):
             logging.info("📝 Zed template changed")
             build_zed = True
         else:
-            # For other changes (theme files, build scripts, etc), rebuild both
-            logging.info("📝 Generic source changed, rebuilding both")
+            # For other changes (theme files, build scripts, etc), rebuild all
+            logging.info("📝 Generic source changed, rebuilding all")
             build_vscode = True
             build_zed = True
+            build_herdr = True
+            build_ghostty = True
 
         # Run VS Code build if needed
         if build_vscode:
@@ -70,8 +74,40 @@ class RebuildHandler(FileSystemEventHandler):
             else:
                 logging.info("✅ Zed build complete")
 
+        # Run Herdr build if needed
+        if build_herdr:
+            logging.info("🏗️  Building Herdr themes...")
+            result = subprocess.run(
+                ["python", "build_herdr.py"], capture_output=True, text=True
+            )
+            if result.stdout:
+                print(result.stdout, end="")
+            if result.stderr:
+                print(result.stderr, end="")
+            if result.returncode != 0:
+                logging.error(f"❌ build_herdr.py failed with code {result.returncode}")
+            else:
+                logging.info("✅ Herdr build complete")
+
+        # Run Ghostty build if needed
+        if build_ghostty:
+            logging.info("🏗️  Building Ghostty themes...")
+            result = subprocess.run(
+                ["python", "build_ghostty.py"], capture_output=True, text=True
+            )
+            if result.stdout:
+                print(result.stdout, end="")
+            if result.stderr:
+                print(result.stderr, end="")
+            if result.returncode != 0:
+                logging.error(
+                    f"❌ build_ghostty.py failed with code {result.returncode}"
+                )
+            else:
+                logging.info("✅ Ghostty build complete")
+
         # Run tests if enabled
-        if RUN_TESTS and (build_vscode or build_zed):
+        if RUN_TESTS and (build_vscode or build_zed or build_herdr or build_ghostty):
             logging.info("🧪 Running tests...")
             result = subprocess.run(
                 ["python", "-m", "pytest", "tests/", "-v", "--tb=short"],
