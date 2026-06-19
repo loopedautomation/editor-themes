@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/loopedautomation/editor-themes/actions/workflows/test.yml/badge.svg)](https://github.com/loopedautomation/editor-themes/actions/workflows/test.yml)
 
-Looped Automation's editor themes for VS Code, Zed, Warp, and Oh My Posh are generated from a structured TOML template system. This repository contains the source templates, the build tooling, and the prebuilt themes.
+Looped Automation's editor themes for VS Code, Zed, Warp, Oh My Posh, Herdr, and Ghostty are generated from a structured TOML template system. This repository contains the source templates, the build tooling, and the prebuilt themes.
 
 ## Prerequisites
 
@@ -56,8 +56,12 @@ The debugger automatically reloads whenever the generated theme JSON files chang
 - `zed/themes/` generated Zed themes
 - `warp/` Warp terminal themes
 - `oh-my-posh/` Oh My Posh prompt themes
+- `herdr/` Herdr config snippets and installer
+- `ghostty/` Ghostty terminal themes and installer
 - `build.py` VS Code template compiler invoked by the watcher or directly
 - `build_zed.py` Zed template compiler
+- `build_herdr.py` Herdr config snippet compiler
+- `build_ghostty.py` Ghostty theme compiler (reads the Warp presets)
 - `watch.py` filesystem watcher that rebuilds all themes on change
 - `package.json` VS Code extension manifest referencing generated themes
 - `zed/extension.toml` Zed extension configuration
@@ -102,6 +106,67 @@ See [zed/README.md](zed/README.md) for detailed installation and usage instructi
 - The prompt theme is in `oh-my-posh/looped-dark.omp.json`.
 - Run `./oh-my-posh/install.sh` to copy it into Homebrew's themes folder and wire it into `.zshrc` (backs up your existing config first).
 - If you prefer manual setup, add `eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/looped-dark.omp.json)"` to your shell init file.
+
+## Herdr Theme
+
+[Herdr](https://herdr.dev) is a terminal agent multiplexer. It has no installable theme
+package — colors are set in `~/.config/herdr/config.toml` via a `[theme.custom]` override
+block, so the Looped theme ships as a config snippet that maps the Looped palette onto
+Herdr's supported fields (`panel_bg`, `accent`, `green`, `blue`, `red`, `yellow`).
+
+### Building the Herdr Snippets
+
+```bash
+uv run build_herdr.py
+```
+
+This generates `herdr/looped-dark.toml` and `herdr/looped-light.toml`.
+
+### Installing in Herdr
+
+```bash
+./herdr/install.sh           # install Looped Dark (default)
+./herdr/install.sh --light   # install Looped Light
+```
+
+The installer writes the snippet to `~/.config/herdr/config.toml`, backing up any existing
+config first. If you already have a `[theme]` section, it won't overwrite it — instead it
+prints the snippet to merge manually.
+
+For manual setup, copy the `[theme]` / `[theme.custom]` block from
+`herdr/looped-dark.toml` (or `looped-light.toml`) into `~/.config/herdr/config.toml`, then
+restart Herdr.
+
+> Note: Herdr only themes its own UI chrome (panels, accent). The background of the
+> terminal area inside panes is painted by your terminal emulator — see the Ghostty
+> theme below to match the full window background.
+
+## Ghostty Theme
+
+[Ghostty](https://ghostty.org) themes set the full terminal window background and the 16
+ANSI colors. The Looped Ghostty themes are generated from the Warp presets
+(`warp/looped-*.yaml`), which are the source of truth for terminal colors, so Warp and
+Ghostty stay in sync.
+
+### Building the Ghostty Themes
+
+```bash
+uv run build_ghostty.py
+```
+
+This generates `ghostty/themes/looped-dark` and `ghostty/themes/looped-light`.
+
+### Installing in Ghostty
+
+```bash
+./ghostty/install.sh           # use Looped Dark (default)
+./ghostty/install.sh --light   # use Looped Light
+```
+
+The installer copies the theme files into `~/.config/ghostty/themes/` and sets
+`theme = looped-dark` (or `looped-light`) in `~/.config/ghostty/config`, backing up any
+existing config first. After installing, reload Ghostty's config (`Cmd+Shift+,`) or restart
+Ghostty.
 
 ## License
 

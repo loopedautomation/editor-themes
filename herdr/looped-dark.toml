@@ -1,0 +1,12 @@
+# Looped Dark — generated from looped-dark.toml. Do not edit by hand.
+# Merge this into ~/.config/herdr/config.toml.
+[theme]
+name = "one-dark"
+
+[theme.custom]
+panel_bg = "#0A0B10"
+accent   = "#685EF6"
+green    = "#389469"
+blue     = "#8B8DFF"
+red      = "#D02E1E"
+yellow   = "#EE9A00"

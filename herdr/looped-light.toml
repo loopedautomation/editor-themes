@@ -1,0 +1,12 @@
+# Looped Light — generated from looped-light.toml. Do not edit by hand.
+# Merge this into ~/.config/herdr/config.toml.
+[theme]
+name = "one-light"
+
+[theme.custom]
+panel_bg = "#FFFFFF"
+accent   = "#685EF6"
+green    = "#2D7A54"
+blue     = "#5B7FFF"
+red      = "#D02E1E"
+yellow   = "#E68A00"

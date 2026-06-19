@@ -1,0 +1,21 @@
+# looped-dark — generated from warp/looped-dark.yaml. Do not edit by hand.
+background = #0A0B10
+foreground = #FAF9F6
+cursor-color = #685EF6
+selection-background = #685EF6
+palette = 0=#313338
+palette = 1=#D02E1E
+palette = 2=#389469
+palette = 3=#EE9A00
+palette = 4=#8B8DFF
+palette = 5=#685EF6
+palette = 6=#8CB8FF
+palette = 7=#FAF9F6
+palette = 8=#616369
+palette = 9=#FF5C69
+palette = 10=#389469
+palette = 11=#EE9A00
+palette = 12=#8B8DFF
+palette = 13=#7E5DE9
+palette = 14=#8CB8FF
+palette = 15=#EDEEF5
